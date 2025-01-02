@@ -1,0 +1,22 @@
+<div class="math-symbols">
+  <!-- Wrap tabs and symbols in a container with (mouseleave) event -->
+  <div class="tabs-symbols-container">
+    <!-- Tabs -->
+    <ul class="nav nav-tabs">
+      <li class="nav-item" *ngFor="let group of symbolGroups">
+        <a class="nav-link" [class.active]="currentTab === group.group" (mouseover)="setCurrentTab(group.group)">
+          {{ group.group }}
+        </a>
+      </li>
+    </ul>
+
+    <!-- Symbols Container -->
+    <div class="symbols-container" *ngIf="currentTab">
+      <div class="symbol-grid">
+        <div class="symbol-box" *ngFor="let symbol of currentSymbols" (click)="insertSymbol(symbol.code, symbol.offset)" [title]="symbol.name">
+          {{ symbol.symbol }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

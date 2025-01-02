@@ -1,0 +1,36 @@
+/* Remove any position settings from .math-symbols and .symbols-container */
+.math-symbols {
+  /* No need for position: relative; */
+}
+
+.symbols-container {
+  background-color: white;
+  padding: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 16px; /* Optional: add space below the symbols container */
+}
+
+.symbol-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px; /* Space between symbols */
+  justify-content: flex-start; /* Align symbols to the left */
+}
+
+.symbol-box {
+  flex: 0 1 auto; /* Allow the box to grow based on content */
+  min-width: 40px; /* Minimum width for small symbols */
+  padding: 4px;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid lightgray;
+  cursor: pointer;
+  transition: border 0.3s ease;
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+.symbol-box:hover {
+  border: 1px solid black;
+  background-color: rgb(234, 232, 232);
+  font-weight: bold;
+}

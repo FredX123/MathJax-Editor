@@ -1,0 +1,44 @@
+<!-- Preview Area -->
+<div class="container mt-3">
+  <!-- Header -->
+  <div class="row">
+    <div class="col-12">
+      <h3>Rendered Output:</h3>
+    </div>
+  </div>
+
+  <!-- Preview -->
+  <div class="row">
+    <div class="col-12">
+      <div class="preview">
+        <div #output id="output" [appMathJax]="renderedContent" class="p-3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Editor Area -->
+<div class="container editor-container">
+  <!-- Math Symbol Tabs -->
+  <div class="row">
+    <div class="col-12">
+      <app-math-symbols (symbolInserted)="insertSymbol($event)"></app-math-symbols>
+    </div>
+  </div>
+
+  <!-- Math Editor Form -->
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="mathForm">
+        <div class="mb-3">
+          <textarea
+            #editor
+            formControlName="editorContent"
+            class="form-control editor"
+            placeholder="Type your math expression here..."
+          ></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

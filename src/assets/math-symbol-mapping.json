@@ -1,0 +1,505 @@
+[
+  {
+    "group": "basic",
+    "symbols":[
+      {
+        "name": "inline",
+        "symbol": "inline",
+        "code": "$$",
+        "offset": 1
+      },
+      {
+        "name": "display",
+        "symbol": "display",
+        "code": "$$$$",
+        "offset": 2
+      }
+    ]
+  },
+  {
+    "group": "parentheses",
+    "symbols": [
+      {
+        "name": "parentheses",
+        "symbol": "(...)",
+        "code": "\\left( ... \\right)",
+        "offset": 6
+      },
+      {
+        "name": "squareBrackets",
+        "symbol": "[...]",
+        "code": "\\left[ ... \\right]",
+        "offset": 6
+      },
+      {
+        "name": "curlyBrackets",
+        "symbol": "{...}",
+        "code": "\\left\\{ ... \\right\\}",
+        "offset": 7
+      },
+      {
+        "name": "vert",
+        "symbol": "|...|",
+        "code": "\\left\\vert ... \\right\\vert",
+        "offset": 11
+      },
+      {
+        "name": "doubleVert",
+        "symbol": "∥...∥",
+        "code": "\\left\\Vert ... \\right\\Vert",
+        "offset": 11
+      },
+      {
+        "name": "angleBrackets",
+        "symbol": "⟨...⟩",
+        "code": "\\left\\langle ... \\right\\rangle",
+        "offset": 13
+      },
+      {
+        "name": "ceilingBrackets",
+        "symbol": "⌈...⌉",
+        "code": "\\left\\lceil ... \\right\\rceil",
+        "offset": 12
+      },
+      {
+        "name": "floorBrackets",
+        "symbol": "⌊...⌋",
+        "code": "\\left\\lfloor ... \\right\\rfloor",
+        "offset": 13
+      },
+      {
+        "name": "leftCurlyBrace",
+        "symbol": "{...",
+        "code": "\\left\\{ ... \\right.",
+        "offset": 7
+      },
+      {
+        "name": "rightSquareBracket",
+        "symbol": "...]",
+        "code": "\\left. ... \\right]",
+        "offset": 6
+      },
+      {
+        "name": "nestedParentheses",
+        "symbol": "(((((x)))))",
+        "code": "\\Biggl(\\biggl(\\Bigl(\\bigl((x)\\bigr)\\Bigr)\\biggr)\\Biggr)",
+        "offset": 27
+      }
+    ]
+  },
+  {
+    "group": "logical",
+    "symbols": [
+      {
+        "name": "lessThan",
+        "symbol": "<",
+        "code": "\\lt)",
+        "offset": 3
+      },
+      {
+        "name": "greaterThan",
+        "symbol": ">",
+        "code": "\\gt",
+        "offset": 3
+      },
+      {
+        "name": "le",
+        "symbol": "≤",
+        "code": "\\le",
+        "offset": 3
+      },
+      {
+        "name": "leq",
+        "symbol": "≤",
+        "code": "\\leq",
+        "offset": 4
+      },
+      {
+        "name": "leqq",
+        "symbol": "≦",
+        "code": "\\leqq",
+        "offset": 5
+      },
+      {
+        "name": "leqslant",
+        "symbol": "⩽",
+        "code": "\\leqslant",
+        "offset": 9
+      },
+      {
+        "name": "ge",
+        "symbol": "≥",
+        "code": "\\ge",
+        "offset": 3
+      },
+      {
+        "name": "geq",
+        "symbol": "≥",
+        "code": "\\geq",
+        "offset": 4
+      },
+      {
+        "name": "geqq",
+        "symbol": "≧",
+        "code": "\\geqq",
+        "offset": 5
+      },
+      {
+        "name": "geqslant",
+        "symbol": "⩾",
+        "code": "\\geqslant",
+        "offset": 9
+      },
+      {
+        "name": "neq",
+        "symbol": "≠",
+        "code": "\\neq",
+        "offset": 4
+      },
+      {
+        "name": "land",
+        "symbol": "∧",
+        "code": "\\land",
+        "offset": 5
+      },
+      {
+        "name": "lor",
+        "symbol": "∨",
+        "code": "\\lor",
+        "offset": 4
+      },
+      {
+        "name": "lnot",
+        "symbol": "¬",
+        "code": "\\lnot",
+        "offset": 5
+      },
+      {
+        "name": "forall",
+        "symbol": "∀",
+        "code": "\\forall",
+        "offset": 6
+      },
+      {
+        "name": "exists",
+        "symbol": "∃",
+        "code": "\\exists",
+        "offset": 7
+      },
+      {
+        "name": "nexists",
+        "symbol": "∄",
+        "code": "\\nexists",
+        "offset": 8
+      },
+      {
+        "name": "top",
+        "symbol": "⊤",
+        "code": "\\top",
+        "offset": 4
+      },
+      {
+        "name": "bot",
+        "symbol": "⊥",
+        "code": "\\bot",
+        "offset": 4
+      },
+      {
+        "name": "vdash",
+        "symbol": "⊢",
+        "code": "\\vdash",
+        "offset": 6
+      },
+      {
+        "name": "vDash",
+        "symbol": "⊨",
+        "code": "\\vDash",
+        "offset": 6
+      },
+      {
+        "name": "approx",
+        "symbol": "≈",
+        "code": "\\approx",
+        "offset": 7
+      },
+      {
+        "name": "sim",
+        "symbol": "∼",
+        "code": "\\sim",
+        "offset": 4
+      },
+      {
+        "name": "simeq",
+        "symbol": "≃",
+        "code": "\\simeq",
+        "offset": 6
+      },
+      {
+        "name": "cong",
+        "symbol": "≅",
+        "code": "\\cong",
+        "offset": 5
+      },
+      {
+        "name": "equiv",
+        "symbol": "≡",
+        "code": "\\equiv",
+        "offset": 6
+      },
+      {
+        "name": "prec",
+        "symbol": "≺",
+        "code": "\\prec",
+        "offset": 5
+      },
+      {
+        "name": "lhd",
+        "symbol": "⊲",
+        "code": "\\lhd",
+        "offset": 4
+      },
+      {
+        "name": "therefore",
+        "symbol": "∴",
+        "code": "\\therefore",
+        "offset": 10
+      }
+    ]
+  },
+  {
+    "group": "operators",
+    "symbols": [
+      {
+        "name": "times",
+        "symbol": "×",
+        "code": "\\times",
+        "offset": 6
+      },
+      {
+        "name": "divide",
+        "symbol": "÷",
+        "code": "\\div",
+        "offset": 4
+      },
+      {
+        "name": "pm",
+        "symbol": "±",
+        "code": "\\pm",
+        "offset": 3
+      },
+      {
+        "name": "mp",
+        "symbol": "∓",
+        "code": "\\mp",
+        "offset": 3
+      },
+      {
+        "name": "cdot",
+        "symbol": "⋅",
+        "code": "\\cdot",
+        "offset": 4
+      },
+      {
+        "name": "star",
+        "symbol": "⋆",
+        "code": "\\star",
+        "offset": 5
+      },
+      {
+        "name": "asterisk",
+        "symbol": "∗",
+        "code": "\\ast",
+        "offset": 4
+      },
+      {
+        "name": "oplus",
+        "symbol": "⊕",
+        "code": "\\oplus",
+        "offset": 6
+      },
+      {
+        "name": "circ",
+        "symbol": "∘",
+        "code": "\\circ",
+        "offset": 5
+      },
+      {
+        "name": "bullet",
+        "symbol": "∙",
+        "code": "\\bullet",
+        "offset": 7
+      }
+    ]
+  },
+  {
+    "group": "setSymbols",
+    "symbols": [
+      {
+        "name": "cup",
+        "symbol": "∪",
+        "code": "\\cup",
+        "offset": 4
+      },
+      {
+        "name": "cap",
+        "symbol": "∩",
+        "code": "\\cap",
+        "offset": 4
+      },
+      {
+        "name": "setminus",
+        "symbol": "∖",
+        "code": "\\setminus",
+        "offset": 9
+      },
+      {
+        "name": "subset",
+        "symbol": "⊂",
+        "code": "\\subset",
+        "offset": 7
+      },
+      {
+        "name": "subseteq",
+        "symbol": "⊆",
+        "code": "\\subseteq",
+        "offset": 9
+      },
+      {
+        "name": "subsetneq",
+        "symbol": "⊊",
+        "code": "\\subsetneq",
+        "offset": 10
+      },
+      {
+        "name": "supset",
+        "symbol": "⊃",
+        "code": "\\supset",
+        "offset": 7
+      },
+      {
+        "name": "in",
+        "symbol": "∈",
+        "code": "\\in",
+        "offset": 3
+      },
+      {
+        "name": "notin",
+        "symbol": "∉",
+        "code": "\\notin",
+        "offset": 6
+      },
+      {
+        "name": "emptyset",
+        "symbol": "∅",
+        "code": "\\emptyset",
+        "offset": 9
+      },
+      {
+        "name": "varnothing",
+        "symbol": "∅",
+        "code": "\\varnothing",
+        "offset": 11
+      }
+    ]
+  },
+  {
+    "group": "arrows",
+    "symbols": [
+      {
+        "name": "to",
+        "symbol": "→",
+        "code": "\\to",
+        "offset": 3
+      },
+      {
+        "name": "rightarrow",
+        "symbol": "→",
+        "code": "\\rightarrow",
+        "offset": 11
+      },
+      {
+        "name": "leftarrow",
+        "symbol": "←",
+        "code": "\\leftarrow",
+        "offset": 10
+      },
+      {
+        "name": "Rightarrow",
+        "symbol": "⇒",
+        "code": "\\Rightarrow",
+        "offset": 11
+      },
+      {
+        "name": "Leftarrow",
+        "symbol": "⇐",
+        "code": "\\Leftarrow",
+        "offset": 10
+      },
+      {
+        "name": "Leftrightarrow",
+        "symbol": "⇔",
+        "code": "\\Leftrightarrow",
+        "offset": 15
+      },
+      {
+        "name": "mapsto",
+        "symbol": "↦",
+        "code": "\\mapsto",
+        "offset": 7
+      }
+    ]
+  },
+  {
+    "group": "special",
+    "symbols": [
+      {
+        "name": "infty",
+        "symbol": "∞",
+        "code": "\\infty",
+        "offset": 6
+      },
+      {
+        "name": "nabla",
+        "symbol": "∇",
+        "code": "\\nabla",
+        "offset": 6
+      },
+      {
+        "name": "partial",
+        "symbol": "∂",
+        "code": "\\partial",
+        "offset": 7
+      },
+      {
+        "name": "Im",
+        "symbol": "I",
+        "code": "\\Im",
+        "offset": 3
+      },
+      {
+        "name": "Re",
+        "symbol": "R",
+        "code": "\\Re",
+        "offset": 3
+      },
+      {
+        "name": "ldots",
+        "symbol": "…",
+        "code": "\\ldots",
+        "offset": 6
+      },
+      {
+        "name": "cdots",
+        "symbol": "⋯",
+        "code": "\\cdots",
+        "offset": 6
+      },
+      {
+        "name": "ell",
+        "symbol": "ℓ",
+        "code": "\\ell",
+        "offset": 4
+      }
+    ]
+  }
+]
