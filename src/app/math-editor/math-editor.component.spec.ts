@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { MathEditorComponent } from './math-editor.component';
 
@@ -8,7 +10,8 @@ describe('MathEditorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [MathEditorComponent]
+    imports: [MathEditorComponent],
+    providers: [provideHttpClient(), provideHttpClientTesting()]
 });
     fixture = TestBed.createComponent(MathEditorComponent);
     component = fixture.componentInstance;

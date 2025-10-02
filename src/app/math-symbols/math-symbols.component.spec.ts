@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { MathSymbolsComponent } from './math-symbols.component';
 
@@ -8,7 +10,8 @@ describe('MathSymbolsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [MathSymbolsComponent]
+    imports: [MathSymbolsComponent],
+    providers: [provideHttpClient(), provideHttpClientTesting()]
 });
     fixture = TestBed.createComponent(MathSymbolsComponent);
     component = fixture.componentInstance;
