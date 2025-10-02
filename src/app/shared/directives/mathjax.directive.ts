@@ -3,7 +3,8 @@ import { Directive, ElementRef, Input, OnChanges } from '@angular/core';
 declare const MathJax: any;
 
 @Directive({
-  selector: '[appMathJax]'
+    selector: '[appMathJax]',
+    standalone: false
 })
 export class MathJaxDirective implements OnChanges {
   @Input() appMathJax: string = '';

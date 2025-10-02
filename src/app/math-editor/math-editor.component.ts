@@ -11,10 +11,11 @@ const sample_input: string = 'The measure of a major arc is the difference betwe
                           +  '$\\pi$';
 
 @Component({
-  selector: 'app-math-editor',
-  templateUrl: './math-editor.component.html',
-  styleUrls: ['./math-editor.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-math-editor',
+    templateUrl: './math-editor.component.html',
+    styleUrls: ['./math-editor.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MathEditorComponent implements OnInit {
 
