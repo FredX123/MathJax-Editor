@@ -8,8 +8,8 @@ describe('MathEditorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MathEditorComponent]
-    });
+    imports: [MathEditorComponent]
+});
     fixture = TestBed.createComponent(MathEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

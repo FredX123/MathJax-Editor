@@ -5,12 +5,10 @@ import { MathJaxDirective } from './directives/mathjax.directive';
 
 
 @NgModule({
-  declarations: [
-    MathJaxDirective
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [MathJaxDirective]
+    imports: [
+        CommonModule,
+        MathJaxDirective
+    ],
+    exports: [MathJaxDirective]
 })
 export class SharedModule { }

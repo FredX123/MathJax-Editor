@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MathSymbol, MathSymbolGroup } from '../shared/model/symbol-group.model';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-math-symbols',
     templateUrl: './math-symbols.component.html',
     styleUrls: ['./math-symbols.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [NgFor, NgIf]
 })
 export class MathSymbolsComponent implements OnInit {
 

@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MathJaxDirective } from '../shared/directives/mathjax.directive';
+import { MathSymbolsComponent } from '../math-symbols/math-symbols.component';
 
 const sample_input: string = 'The measure of a major arc is the difference between the measure of the related minor arc and the '
                           +  'measure of the entire circle ($360^{\\circ}$). For example, if the measure of the related minor arc '
@@ -15,7 +17,7 @@ const sample_input: string = 'The measure of a major arc is the difference betwe
     templateUrl: './math-editor.component.html',
     styleUrls: ['./math-editor.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+    imports: [MathJaxDirective, MathSymbolsComponent, ReactiveFormsModule]
 })
 export class MathEditorComponent implements OnInit {
 

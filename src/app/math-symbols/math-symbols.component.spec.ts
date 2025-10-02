@@ -8,8 +8,8 @@ describe('MathSymbolsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MathSymbolsComponent]
-    });
+    imports: [MathSymbolsComponent]
+});
     fixture = TestBed.createComponent(MathSymbolsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
