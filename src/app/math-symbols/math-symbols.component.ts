@@ -1,45 +1,65 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MathSymbol, MathSymbolGroup } from '../shared/model/symbol-group.model';
+import { NgFor, NgIf } from '@angular/common';
+import { MATH_PALETTES, PaletteMode } from '../shared/data/math-palettes';
 
 @Component({
-  selector: 'app-math-symbols',
-  templateUrl: './math-symbols.component.html',
-  styleUrls: ['./math-symbols.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-math-symbols',
+    templateUrl: './math-symbols.component.html',
+    styleUrls: ['./math-symbols.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [NgFor, NgIf]
 })
-export class MathSymbolsComponent implements OnInit {
+export class MathSymbolsComponent implements OnInit, OnChanges {
 
-  @Output() symbolInserted = new EventEmitter<any>();
+  @Output() symbolInserted = new EventEmitter<string>();
+  @Input() mode: PaletteMode = 'tex';
 
   symbolGroups: MathSymbolGroup[] = [];
-  currentTab: string = ''; // Track the current tab
+  currentTab: string = '';
 
-  constructor(private http: HttpClient, private cd: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.loadSymbolGroups();
+    this.setPalette();
   }
 
-  loadSymbolGroups() {
-    this.http.get<MathSymbolGroup[]>('/assets/math-symbol-mapping.json').subscribe(data => {
-      this.symbolGroups = data;
-      this.currentTab = this.symbolGroups[0].group;
-      this.cd.markForCheck();
-    });
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['mode'] && !changes['mode'].firstChange) {
+      this.setPalette();
+    }
   }
 
-  insertSymbol(symbolCode: string, offset?: number) {
-    this.symbolInserted.emit({symbolCode: symbolCode, offset: offset});
+  insertSymbol(snippet: string) {
+    this.symbolInserted.emit(snippet);
   }
 
-  setCurrentTab(group: string) {
+  setCurrentTab(group: string): void {
     this.currentTab = group;
+    this.cd.markForCheck();
+  }
+
+  activateTab(event: MouseEvent | KeyboardEvent, group: string): void {
+    if (event instanceof KeyboardEvent) {
+      const key = event.key;
+      if (key !== 'Enter' && key !== ' ' && key !== 'Space' && key !== 'Spacebar') {
+        return;
+      }
+      event.preventDefault();
+    }
+
+    this.setCurrentTab(group);
   }
 
   get currentSymbols(): MathSymbol[] {
-    const group = this.symbolGroups.find(g => g.group === this.currentTab);
-    return group ? group.symbols : [];
+    const group = this.symbolGroups.find(g => g.title === this.currentTab);
+    return group ? group.items : [];
+  }
+
+  private setPalette(): void {
+    this.symbolGroups = MATH_PALETTES[this.mode] ?? [];
+    this.currentTab = this.symbolGroups[0]?.title ?? '';
+    this.cd.markForCheck();
   }
 
 }
