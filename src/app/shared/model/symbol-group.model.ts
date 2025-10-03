@@ -1,11 +1,10 @@
 export interface MathSymbol {
-  name: string;
-  symbol: string;
-  code: string;
-  offset: number;
+  title: string;
+  preview: string;
+  snippet: string;
 }
 
 export interface MathSymbolGroup {
-  group: string;
-  symbols: MathSymbol[];
+  title: string;
+  items: MathSymbol[];
 }

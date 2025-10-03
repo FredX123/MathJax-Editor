@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MathEditorComponent } from './math-editor.component';
 
 describe('MathEditorComponent', () => {
@@ -8,8 +7,8 @@ describe('MathEditorComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MathEditorComponent]
-    });
+    imports: [MathEditorComponent]
+});
     fixture = TestBed.createComponent(MathEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -17,5 +16,10 @@ describe('MathEditorComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should switch palette mode', () => {
+    component.setMode('mathml');
+    expect(component.paletteMode).toBe('mathml');
   });
 });

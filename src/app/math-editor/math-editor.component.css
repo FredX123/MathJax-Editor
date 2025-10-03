@@ -18,7 +18,7 @@
 
 /* Adjust the preview area */
 .preview {
-  height: 300px; /* Adjust as needed */
+  height: 200px; /* Adjust as needed */
   margin-bottom: 20px; /* Adjust the spacing */
   overflow-y: auto;
   border: 1px solid #ccc;
