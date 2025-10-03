@@ -28,6 +28,11 @@
                 "glob": "**/*",
                 "input": "node_modules/mathjax/sre",
                 "output": "sre"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/mathjax/input",
+                "output": "input"
               }
             ],
             "styles": [
@@ -98,6 +103,11 @@
                 "glob": "**/*",
                 "input": "node_modules/mathjax/sre",
                 "output": "sre"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/mathjax/input",
+                "output": "input"
               }
             ],
             "styles": [

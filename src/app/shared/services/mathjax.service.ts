@@ -52,6 +52,16 @@ export class MathJaxService {
   }
 
   private async invokeTypeset(mathjax: MathJaxLike, element: HTMLElement): Promise<void> {
+    const anyMathJax = mathjax as any;
+
+    if (typeof anyMathJax?.typesetClear === 'function') {
+      anyMathJax.typesetClear([element]);
+    }
+
+    if (typeof anyMathJax?.texReset === 'function') {
+      anyMathJax.texReset();
+    }
+
     if (typeof mathjax.typesetPromise === 'function') {
       await mathjax.typesetPromise([element]);
       return;

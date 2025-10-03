@@ -12,7 +12,8 @@ export class MathJaxDirective implements OnChanges {
   }
 
   private renderMathJax(): void {
-    this.el.nativeElement.innerHTML = this.appMathJax ?? '';
+    const content = this.appMathJax ?? '';
+    this.el.nativeElement.innerHTML = content;
     this.mathJaxService.typeset(this.el.nativeElement).catch(error => {
       console.error('MathJax rendering failed', error);
     });

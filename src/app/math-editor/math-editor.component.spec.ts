@@ -17,4 +17,9 @@ describe('MathEditorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should switch palette mode', () => {
+    component.setMode('mathml');
+    expect(component.paletteMode).toBe('mathml');
+  });
 });

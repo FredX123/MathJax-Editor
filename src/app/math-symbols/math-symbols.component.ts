@@ -36,6 +36,7 @@ export class MathSymbolsComponent implements OnInit, OnChanges {
 
   setCurrentTab(group: string): void {
     this.currentTab = group;
+    this.cd.markForCheck();
   }
 
   activateTab(event: MouseEvent | KeyboardEvent, group: string): void {

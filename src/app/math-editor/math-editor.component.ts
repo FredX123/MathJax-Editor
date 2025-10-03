@@ -1,24 +1,52 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MathJaxDirective } from '../shared/directives/mathjax.directive';
 import { MathSymbolsComponent } from '../math-symbols/math-symbols.component';
 import { PaletteMode } from '../shared/data/math-palettes';
 
-const sample_input: string = 'The measure of a major arc is the difference between the measure of the related minor arc and the '
-                          +  'measure of the entire circle ($360^{\\circ}$). For example, if the measure of the related minor arc '
-                          +  'is $50^{\\circ}$, then the measure of the major arc will be $360^{\\circ} - 50^{\\circ} = 310^{\circ}$. '
-                          +  'The measure of a semicircle is $180^{\\circ}$\n'
-                          +  'A useful relation in many CS contexts ${\\pi}$ is that, for $n \\ge 0$, \n'
-                          +  '$$\\sum_{i=0}^n i = \\frac{n(n+1)}{2}.$$ \n'
-                          +  '$$\\frac{n(n+1)}{2}$$ \n'
-                          +  '$\\pi$';
+const SAMPLE_TEX = `$$\\int_0^\\infty \\frac{x^3}{e^x-1}\\,dx = \\frac{\\pi^4}{15}$$`;
+
+const SAMPLE_MATHML = `\
+<math display="block">\
+  <mrow>\
+    <msubsup>\
+      <mo>∫</mo>\
+      <mn>0</mn>\
+      <mo>∞</mo>\
+    </msubsup>\
+    <mfrac>\
+      <msup><mi>x</mi><mn>3</mn></msup>\
+      <mrow>\
+        <msup><mi>e</mi><mi>x</mi></msup>\
+        <mo>−</mo>\
+        <mn>1</mn>\
+      </mrow>\
+    </mfrac>\
+    <mo>d</mo><mi>x</mi>\
+    <mo>=</mo>\
+    <mfrac>\
+      <msup><mi>π</mi><mn>4</mn></msup>\
+      <mn>15</mn>\
+    </mfrac>\
+  </mrow>\
+</math>\
+`.trim();
+
+const SAMPLE_ASCIIMATH = 'int_0^infty x^3/(e^x - 1) dx = (pi^4)/15';
+
+const SAMPLE_BY_MODE: Record<PaletteMode, string> = {
+  tex: SAMPLE_TEX,
+  mathml: SAMPLE_MATHML,
+  asciimath: SAMPLE_ASCIIMATH
+};
 
 @Component({
     selector: 'app-math-editor',
     templateUrl: './math-editor.component.html',
     styleUrls: ['./math-editor.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MathJaxDirective, MathSymbolsComponent, ReactiveFormsModule]
+    imports: [MathJaxDirective, MathSymbolsComponent, ReactiveFormsModule, NgFor]
 })
 export class MathEditorComponent implements OnInit {
 
@@ -28,6 +56,11 @@ export class MathEditorComponent implements OnInit {
   mathForm: FormGroup;
   renderedContent: string = '';
   paletteMode: PaletteMode = 'tex';
+  readonly modes: Array<{ key: PaletteMode; label: string }> = [
+    { key: 'tex', label: 'TeX' },
+    { key: 'mathml', label: 'MathML' },
+    { key: 'asciimath', label: 'AsciiMath' }
+  ];
 
   constructor() {
     this.mathForm = new FormGroup({
@@ -40,7 +73,15 @@ export class MathEditorComponent implements OnInit {
       this.updateMath();
     });
 
-    this.editorContent?.setValue(sample_input);
+    this.editorContent?.setValue(SAMPLE_BY_MODE[this.paletteMode]);
+  }
+
+  setMode(mode: PaletteMode): void {
+    if (this.paletteMode === mode) {
+      return;
+    }
+    this.paletteMode = mode;
+    this.editorContent?.setValue(SAMPLE_BY_MODE[mode]);
   }
 
   insertSymbol(snippet: string): void {
@@ -70,22 +111,82 @@ export class MathEditorComponent implements OnInit {
 
   // Update MathJax-rendered content
   updateMath() {
-    const latexText = this.editorContent?.value || '';
-    this.renderedContent = latexText.replace(/\n\n/g, '<br>');
-  }
+    const text = this.editorContent?.value ?? '';
 
-    // HostListener to listen for keydown events
-    @HostListener('window:keydown', ['$event'])
-    handleKeyboardEvent(event: KeyboardEvent) {
-      // Check if Ctrl + I is pressed
-      if (event.ctrlKey && event.key.toLowerCase() === 'i') {
-        event.preventDefault(); // Prevent the default action
-        this.insertSymbol('$$•$$');
-      } else if (event.ctrlKey && event.key.toLowerCase() === 'k') {
-        event.preventDefault(); // Prevent the default action
-        this.insertSymbol('$$\n•\n$$');
+    switch (this.paletteMode) {
+      case 'tex': {
+        this.renderedContent = text;
+        break;
+      }
+      case 'mathml': {
+        this.renderedContent = text;
+        break;
+      }
+      case 'asciimath': {
+        if (!text.trim()) {
+          this.renderedContent = '';
+          break;
+        }
+        const lines = text.split('\n');
+        const segments = lines.map((line: string) => {
+          const trimmed = line.trim();
+          return trimmed ? `\`${trimmed}\`` : '';
+        });
+        this.renderedContent = segments.join('<br>').replace(/(<br>)+$/, '');
+        break;
       }
     }
+  }
+
+  // HostListener to listen for keydown events
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (!event.ctrlKey) {
+      return;
+    }
+
+    const key = event.key.toLowerCase();
+
+    if (key === 'i') {
+      const snippet = this.getInlineSnippet();
+      if (snippet) {
+        event.preventDefault();
+        this.insertSymbol(snippet);
+      }
+    } else if (key === 'k') {
+      const snippet = this.getBlockSnippet();
+      if (snippet) {
+        event.preventDefault();
+        this.insertSymbol(snippet);
+      }
+    }
+  }
+
+  private getInlineSnippet(): string | null {
+    switch (this.paletteMode) {
+      case 'tex':
+        return '\\(•\\)';
+      case 'mathml':
+        return '<math><mi>•</mi></math>';
+      case 'asciimath':
+        return '`•`';
+      default:
+        return null;
+    }
+  }
+
+  private getBlockSnippet(): string | null {
+    switch (this.paletteMode) {
+      case 'tex':
+        return '$$\n•\n$$';
+      case 'mathml':
+        return '<math display="block">\n  •\n</math>';
+      case 'asciimath':
+        return '`\n•\n`';
+      default:
+        return null;
+    }
+  }
 
   get f(): FormGroup {
     return this.mathForm as FormGroup;

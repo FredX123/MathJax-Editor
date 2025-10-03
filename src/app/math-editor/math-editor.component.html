@@ -19,6 +19,24 @@
 
 <!-- Editor Area -->
 <div class="container editor-container">
+  <!-- Mode Selector -->
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="btn-group" role="group" aria-label="Math input mode">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          *ngFor="let mode of modes"
+          [class.active]="paletteMode === mode.key"
+          [attr.aria-pressed]="paletteMode === mode.key"
+          (click)="setMode(mode.key)"
+        >
+          {{ mode.label }}
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Math Symbol Tabs -->
   <div class="row">
     <div class="col-12">
