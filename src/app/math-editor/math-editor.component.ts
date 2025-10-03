@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, HostListener, OnInit, V
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MathJaxDirective } from '../shared/directives/mathjax.directive';
 import { MathSymbolsComponent } from '../math-symbols/math-symbols.component';
+import { PaletteMode } from '../shared/data/math-palettes';
 
 const sample_input: string = 'The measure of a major arc is the difference between the measure of the related minor arc and the '
                           +  'measure of the entire circle ($360^{\\circ}$). For example, if the measure of the related minor arc '
@@ -26,6 +27,7 @@ export class MathEditorComponent implements OnInit {
 
   mathForm: FormGroup;
   renderedContent: string = '';
+  paletteMode: PaletteMode = 'tex';
 
   constructor() {
     this.mathForm = new FormGroup({
@@ -41,32 +43,29 @@ export class MathEditorComponent implements OnInit {
     this.editorContent?.setValue(sample_input);
   }
 
-  insertSymbol(event: any): void {
-    if (this.editorContent) {
-      const textareaValue = this.editorContent.value || '';
-      const cursorPos = this.textarea.nativeElement.selectionStart;
-      const textBefore = textareaValue.substring(0, cursorPos);
-      const textAfter = textareaValue.substring(cursorPos);
-
-      // Insert the symbol at the cursor position
-      const newText = textBefore + event.symbolCode + textAfter;
-      this.editorContent.setValue(newText);
-
-      // Calculate the new cursor position
-      if (event.offset) {
-        this.textarea.nativeElement.selectionStart = cursorPos + event.offset;
-        this.textarea.nativeElement.selectionEnd = cursorPos + event.offset;
-      } else {
-        this.textarea.nativeElement.selectionStart = cursorPos + event.symbolCode.length;
-        this.textarea.nativeElement.selectionEnd = cursorPos + event.symbolCode.length;
-      }
-
-      // Update the MathJax rendering
-      this.updateMath();
-
-      // Refocus the textarea after updating
-      this.textarea.nativeElement.focus();
+  insertSymbol(snippet: string): void {
+    if (!this.editorContent) {
+      return;
     }
+
+    const textareaValue = this.editorContent.value || '';
+    const cursorPos = this.textarea.nativeElement.selectionStart;
+    const textBefore = textareaValue.substring(0, cursorPos);
+    const textAfter = textareaValue.substring(cursorPos);
+
+    const inserted = snippet;
+    const updated = textBefore + inserted + textAfter;
+    this.editorContent.setValue(updated);
+
+    const bulletIndex = inserted.indexOf('•');
+    const selectionStart = bulletIndex >= 0 ? cursorPos + bulletIndex : cursorPos + inserted.length;
+    const selectionEnd = bulletIndex >= 0 ? selectionStart + 1 : selectionStart;
+
+    this.textarea.nativeElement.selectionStart = selectionStart;
+    this.textarea.nativeElement.selectionEnd = selectionEnd;
+
+    this.updateMath();
+    this.textarea.nativeElement.focus();
   }
 
   // Update MathJax-rendered content
@@ -81,10 +80,10 @@ export class MathEditorComponent implements OnInit {
       // Check if Ctrl + I is pressed
       if (event.ctrlKey && event.key.toLowerCase() === 'i') {
         event.preventDefault(); // Prevent the default action
-        this.insertSymbol({ symbolCode: '$$', offset: 1 });
+        this.insertSymbol('$$•$$');
       } else if (event.ctrlKey && event.key.toLowerCase() === 'k') {
         event.preventDefault(); // Prevent the default action
-        this.insertSymbol({ symbolCode: '$$$$', offset: 2 });
+        this.insertSymbol('$$\n•\n$$');
       }
     }
 

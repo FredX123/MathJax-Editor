@@ -1,7 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-
 import { MathSymbolsComponent } from './math-symbols.component';
 
 describe('MathSymbolsComponent', () => {
@@ -10,8 +7,7 @@ describe('MathSymbolsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [MathSymbolsComponent],
-    providers: [provideHttpClient(), provideHttpClientTesting()]
+    imports: [MathSymbolsComponent]
 });
     fixture = TestBed.createComponent(MathSymbolsComponent);
     component = fixture.componentInstance;
@@ -20,5 +16,10 @@ describe('MathSymbolsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should load default tex palette', () => {
+    expect(component.symbolGroups.length).toBeGreaterThan(0);
+    expect(component.currentSymbols.length).toBeGreaterThan(0);
   });
 });

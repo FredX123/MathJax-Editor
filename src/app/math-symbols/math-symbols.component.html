@@ -4,17 +4,23 @@
     <!-- Tabs -->
     <ul class="nav nav-tabs">
       <li class="nav-item" *ngFor="let group of symbolGroups">
-        <a class="nav-link" [class.active]="currentTab === group.group" (mouseover)="setCurrentTab(group.group)">
-          {{ group.group }}
-        </a>
+        <button
+          type="button"
+          class="nav-link"
+          [class.active]="currentTab === group.title"
+          (click)="activateTab($event, group.title)"
+          (keydown)="activateTab($event, group.title)"
+        >
+          {{ group.title }}
+        </button>
       </li>
     </ul>
 
     <!-- Symbols Container -->
     <div class="symbols-container" *ngIf="currentTab">
       <div class="symbol-grid">
-        <div class="symbol-box" *ngFor="let symbol of currentSymbols" (click)="insertSymbol(symbol.code, symbol.offset)" [title]="symbol.name">
-          {{ symbol.symbol }}
+        <div class="symbol-box" *ngFor="let symbol of currentSymbols" (click)="insertSymbol(symbol.snippet)" [title]="symbol.title">
+          {{ symbol.preview }}
         </div>
       </div>
     </div>
