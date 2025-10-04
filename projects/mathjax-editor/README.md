@@ -1,63 +1,28 @@
-# MathjaxEditor
+# mathjax-editor
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+Standalone Angular 19 math editor component powered by MathJax v4 (with optional v3 fallback). Supports TeX, MathML, and AsciiMath inputs and integrates with Angular forms or two-way binding patterns.
 
-## Code scaffolding
+## Installation
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Use your preferred package manager, for example:
 
-```bash
-ng generate component component-name
-```
+pnpm add mathjax-editor @mathjax/src
+pnpm add mathjax-full --save-peer   # optional
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Usage
 
-```bash
-ng generate --help
-```
+### Standalone + Reactive Forms
+
+Import the standalone component and bind it to an Angular FormControl.
+
+### Template-driven / Two-way Binding
+
+Bind with [(value)] to mirror the textarea content.
+
+The editor implements ControlValueAccessor and exposes @Input(value) and @Output(valueChange) for flexible integration.
 
 ## Building
 
-To build the library, run:
-
-```bash
 ng build mathjax-editor
-```
 
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
-
-### Publishing the Library
-
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/mathjax-editor
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Use the demo-host application for manual verification.

@@ -1,6 +1,5 @@
 import { MathSymbolGroup } from '../model/symbol-group.model';
-
-export type PaletteMode = 'tex' | 'mathml' | 'asciimath';
+import { MathInputMode } from '../types';
 
 const greekLowercase = [
   ['alpha', 'α'],
@@ -483,8 +482,38 @@ const ASCIIMATH_GROUPS: MathSymbolGroup[] = [
   }
 ];
 
-export const MATH_PALETTES: Record<PaletteMode, MathSymbolGroup[]> = {
+export const MATH_PALETTES: Record<MathInputMode, MathSymbolGroup[]> = {
   tex: TEX_GROUPS,
   mathml: MATHML_GROUPS,
   asciimath: ASCIIMATH_GROUPS
+};
+
+export const SAMPLE_EXPRESSIONS: Record<MathInputMode, string> = {
+  tex: `$$\\int_0^\\infty \\frac{x^3}{e^x-1}\\,dx = \\frac{\\pi^4}{15}$$`,
+  mathml: `\
+<math display="block">\
+  <mrow>\
+    <msubsup>\
+      <mo>∫</mo>\
+      <mn>0</mn>\
+      <mo>∞</mo>\
+    </msubsup>\
+    <mfrac>\
+      <msup><mi>x</mi><mn>3</mn></msup>\
+      <mrow>\
+        <msup><mi>e</mi><mi>x</mi></msup>\
+        <mo>−</mo>\
+        <mn>1</mn>\
+      </mrow>\
+    </mfrac>\
+    <mo>d</mo><mi>x</mi>\
+    <mo>=</mo>\
+    <mfrac>\
+      <msup><mi>π</mi><mn>4</mn></msup>\
+      <mn>15</mn>\
+    </mfrac>\
+  </mrow>\
+</math>\
+`.trim(),
+  asciimath: 'int_0^infty x^3/(e^x - 1) dx = (pi^4)/15'
 };

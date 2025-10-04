@@ -122,7 +122,7 @@
       "projectType": "library",
       "root": "projects/mathjax-editor",
       "sourceRoot": "projects/mathjax-editor/src",
-      "prefix": "lib",
+      "prefix": "mathjax",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -138,16 +138,6 @@
             }
           },
           "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "tsConfig": "projects/mathjax-editor/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
-          }
         }
       }
     },

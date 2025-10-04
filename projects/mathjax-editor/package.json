@@ -1,12 +1,19 @@
 {
   "name": "mathjax-editor",
   "version": "0.0.1",
+  "description": "Standalone Angular math editor with MathJax v4 support",
   "peerDependencies": {
-    "@angular/common": "^19.2.0",
-    "@angular/core": "^19.2.0"
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0",
+    "mathjax-full": "^3.2.2"
+  },
+  "peerDependenciesMeta": {
+    "mathjax-full": {
+      "optional": true
+    }
   },
   "dependencies": {
-    "tslib": "^2.3.0"
-  },
-  "sideEffects": false
+    "@mathjax/src": "^4.0.0"
+  }
 }

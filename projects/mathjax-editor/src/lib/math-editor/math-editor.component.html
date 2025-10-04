@@ -1,0 +1,39 @@
+<div class="math-editor">
+  <section class="preview-wrapper" aria-live="polite" role="status">
+    <h2 class="section-title">Preview</h2>
+    <div #output id="output" class="preview" [mathjaxRender]="renderedContent"></div>
+  </section>
+
+  <section class="mode-toggle" role="group" aria-label="Math input mode">
+    <button
+      type="button"
+      class="toggle-btn"
+      *ngFor="let mode of modes"
+      [class.active]="paletteMode === mode.key"
+      [attr.aria-pressed]="paletteMode === mode.key"
+      (click)="setMode(mode.key)"
+    >
+      {{ mode.label }}
+    </button>
+  </section>
+
+  <div class="editor-body">
+    <aside class="panel palette-panel" aria-labelledby="palette-heading">
+      <h3 id="palette-heading" class="section-title">Insert Symbols</h3>
+      <mathjax-symbols [mode]="paletteMode" (symbolInserted)="insertSymbol($event)"></mathjax-symbols>
+    </aside>
+
+    <section class="panel input-panel" aria-labelledby="editor-heading">
+      <h3 id="editor-heading" class="section-title">Math Input</h3>
+      <p id="editor-hint" class="helper-text">Use Ctrl+I for inline and Ctrl+K for block snippets.</p>
+      <textarea
+        #editor
+        class="editor"
+        [formControl]="editorControl"
+        placeholder="Type your math expression here..."
+        aria-describedby="editor-hint"
+        (blur)="onBlur()"
+      ></textarea>
+    </section>
+  </div>
+</div>

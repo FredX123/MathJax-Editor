@@ -11,7 +11,10 @@
     "noPropertyAccessFromIndexSignature": true,
     "paths": {
       "mathjax-editor": [
-        "./dist/mathjax-editor"
+        "projects/mathjax-editor/src/public-api"
+      ],
+      "mathjax-editor/*": [
+        "projects/mathjax-editor/src/lib/*"
       ]
     },
     "noImplicitReturns": true,

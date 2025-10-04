@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MathEditorComponent } from './math-editor/math-editor.component';
+import { MathEditorComponent } from 'mathjax-editor';
 
 @Component({
     selector: 'app-root',

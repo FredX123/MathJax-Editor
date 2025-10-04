@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { MathSymbol, MathSymbolGroup } from '../shared/model/symbol-group.model';
+import { MathSymbol, MathSymbolGroup } from '../model/symbol-group.model';
 import { NgFor, NgIf } from '@angular/common';
-import { MATH_PALETTES, PaletteMode } from '../shared/data/math-palettes';
+import { MATH_PALETTES } from '../data/math-palettes';
+import { MathInputMode } from '../types';
 
 @Component({
-    selector: 'app-math-symbols',
+    selector: 'mathjax-symbols',
     templateUrl: './math-symbols.component.html',
     styleUrls: ['./math-symbols.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,7 +14,7 @@ import { MATH_PALETTES, PaletteMode } from '../shared/data/math-palettes';
 export class MathSymbolsComponent implements OnInit, OnChanges {
 
   @Output() symbolInserted = new EventEmitter<string>();
-  @Input() mode: PaletteMode = 'tex';
+  @Input() mode: MathInputMode = 'tex';
 
   symbolGroups: MathSymbolGroup[] = [];
   currentTab: string = '';
