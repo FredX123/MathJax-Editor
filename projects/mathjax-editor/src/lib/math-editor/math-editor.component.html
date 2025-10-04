@@ -1,0 +1,109 @@
+<!-- Preview Area -->
+<div class="container mt-3">
+  <!-- Preview -->
+  <div class="row">
+    <div class="col-12">
+      <div class="preview">
+        <div #output id="output" [appMathJax]="renderedContent" class="p-3"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+<!-- Editor Area -->
+<div class="container editor-container">
+  <!-- Mode Selector -->
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="d-flex align-items-center gap-2">
+        <div class="btn-group" role="group" aria-label="Math input mode">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            *ngFor="let mode of modes"
+            [class.active]="paletteMode === mode.key"
+            [attr.aria-pressed]="paletteMode === mode.key"
+            (click)="setMode(mode.key)"
+          >
+            {{ mode.label }}
+          </button>
+        </div>
+        <button type="button" class="btn btn-link p-0 help-btn" (click)="openHelp()" aria-label="Help" title="Help">
+          &#9432;
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Math Symbol Tabs -->
+  <div class="row">
+    <div class="col-12">
+      <app-math-symbols [mode]="paletteMode" (symbolInserted)="insertSymbol($event)"></app-math-symbols>
+    </div>
+  </div>
+
+  <!-- Math Editor Form -->
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="mathForm">
+        <div class="mb-3">
+          <textarea
+            #editor
+            formControlName="editorContent"
+            class="form-control editor"
+            [disabled]="isDisabled"
+            (blur)="handleBlur()"
+            placeholder="Type your math expression here..."
+          ></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Help Dialog -->
+<div class="mjx-modal-backdrop" *ngIf="showHelp" (click)="closeHelp()"></div>
+<div class="mjx-modal" *ngIf="showHelp" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+  <div class="mjx-modal-header">
+    <h5 id="helpTitle" class="mjx-modal-title">Math Editor Help</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeHelp()">✕</button>
+  </div>
+  <div class="mjx-modal-body">
+    <ol class="mb-3">
+      <li>
+        <strong>Insert symbols:</strong> Click any symbol in the palette to insert it at the cursor. Use the placeholder bullet "•" inside snippets as a quick cursor target. Keyboard shortcuts: <code>Ctrl+I</code> inserts an inline math snippet; <code>Ctrl+K</code> inserts a block snippet.
+      </li>
+      <li>
+        <strong>Switch input modes:</strong> Use the TeX / MathML / AsciiMath buttons. Your text is not altered when switching; copy one of the samples below to try rendering in each mode.
+      </li>
+    </ol>
+
+    <div class="samples">
+      <div class="sample-block">
+        <div class="sample-header">
+          <h6 class="mb-1">TeX sample</h6>
+          <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('tex')" title="Copy TeX sample">📋</button>
+        </div>
+        <textarea class="form-control mb-3" rows="3" readonly>{{ helpSamples.tex }}</textarea>
+      </div>
+
+      <div class="sample-block">
+        <div class="sample-header">
+          <h6 class="mb-1">MathML sample</h6>
+          <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('mathml')" title="Copy MathML sample">📋</button>
+        </div>
+        <textarea class="form-control mb-3" rows="8" readonly>{{ helpSamples.mathml }}</textarea>
+      </div>
+
+      <div class="sample-block">
+        <div class="sample-header">
+          <h6 class="mb-1">AsciiMath sample</h6>
+          <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('asciimath')" title="Copy AsciiMath sample">📋</button>
+        </div>
+        <textarea class="form-control" rows="2" readonly>{{ helpSamples.asciimath }}</textarea>
+      </div>
+    </div>
+  </div>
+  <div class="mjx-modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="closeHelp()">Close</button>
+  </div>
+</div>

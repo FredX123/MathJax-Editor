@@ -1,0 +1,22 @@
+{
+  "name": "mathjax-editor",
+  "version": "0.1.0",
+  "description": "Reusable standalone Angular components and utilities for editing and rendering MathJax (TeX/MathML/AsciiMath).",
+  "keywords": [
+    "angular",
+    "mathjax",
+    "editor",
+    "tex",
+    "mathml",
+    "asciimath"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
