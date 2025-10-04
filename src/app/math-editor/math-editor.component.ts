@@ -165,7 +165,7 @@ export class MathEditorComponent implements OnInit {
   private getInlineSnippet(): string | null {
     switch (this.paletteMode) {
       case 'tex':
-        return '\\(•\\)';
+        return '$•$)';
       case 'mathml':
         return '<math><mi>•</mi></math>';
       case 'asciimath':

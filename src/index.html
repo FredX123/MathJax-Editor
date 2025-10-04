@@ -15,6 +15,10 @@
       asciimath: {
         delimiters: [['`', '`']]
       },
+      mathml: {
+        inlineMath: [['<math><mi>', '</mi></math>']],
+        displayMath: [['<math display="block">\n  ', '\n</math>']]
+      },
       loader: {
         load: ['input/tex', 'input/asciimath']
       },
