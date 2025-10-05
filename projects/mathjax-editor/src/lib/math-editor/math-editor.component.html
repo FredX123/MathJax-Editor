@@ -70,36 +70,37 @@
   <div class="mjx-modal-body">
     <ol class="mb-3">
       <li>
-        <strong>Insert symbols:</strong> Click any symbol in the palette to insert it at the cursor. Use the placeholder bullet "•" inside snippets as a quick cursor target. Keyboard shortcuts: <code>Ctrl+I</code> inserts an inline math snippet; <code>Ctrl+K</code> inserts a block snippet.
+        <strong>Pick a mode:</strong> Use TeX / MathML / AsciiMath buttons above the editor. Switching modes does not convert your text; it only changes how the preview is parsed.
       </li>
       <li>
-        <strong>Switch input modes:</strong> Use the TeX / MathML / AsciiMath buttons. Your text is not altered when switching; copy one of the samples below to try rendering in each mode.
+        <strong>Type or paste math:</strong> Enter expressions in the textarea using the selected mode's syntax. The preview updates automatically.
+      </li>
+      <li>
+        <strong>Insert symbols quickly:</strong> Click symbols in the palette. Many snippets contain a placeholder bullet "•" — type over it or use the keyboard to jump to it. Shortcuts: <code>Ctrl+I</code> inserts an inline snippet; <code>Ctrl+K</code> inserts a block snippet.
+      </li>
+      <li>
+        <strong>Find symbols fast:</strong> Use the search box to filter symbols across all groups. Click a tab to clear the search and view that group.
+      </li>
+      <li>
+        <strong>Try a sample:</strong> Copy any sample input (TeX / MathML / AsciiMath) with the buttons below and paste into the textarea.
       </li>
     </ol>
+    <div class="mb-3">
+      <strong>Notes</strong>
+      <ul class="mb-0">
+        <li>AsciiMath preview: plain text must be wrapped with <code>text("...")</code>; this editor does it in samples. Use the prefix <code>center:</code> at the start of a line to center that equation.</li>
+        <li>Mode mismatch: If you paste TeX while in AsciiMath mode (or vice versa), the preview may be blank. Switch back to the matching mode or paste the matching sample.</li>
+      </ul>
+    </div>
 
     <div class="samples">
-      <div class="sample-block">
-        <div class="sample-header">
-          <h6 class="mb-1">TeX sample</h6>
-          <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('tex')" title="Copy TeX sample">📋</button>
-        </div>
-        <textarea class="form-control mb-3" rows="3" readonly>{{ samples.tex }}</textarea>
-      </div>
+      <h6 class="mb-2">Sample Preview (TeX)</h6>
+      <div class="p-2 border rounded mb-3" [appMathJax]="helpPreviewContent"></div>
 
-      <div class="sample-block">
-        <div class="sample-header">
-          <h6 class="mb-1">MathML sample</h6>
-          <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('mathml')" title="Copy MathML sample">📋</button>
-        </div>
-        <textarea class="form-control mb-3" rows="8" readonly>{{ samples.mathml }}</textarea>
-      </div>
-
-      <div class="sample-block">
-        <div class="sample-header">
-          <h6 class="mb-1">AsciiMath sample</h6>
-          <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('asciimath')" title="Copy AsciiMath sample">📋</button>
-        </div>
-        <textarea class="form-control" rows="2" readonly>{{ samples.asciimath }}</textarea>
+      <div class="d-flex gap-2 flex-wrap">
+        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('tex')" title="Copy TeX sample">Copy TeX</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('mathml')" title="Copy MathML sample">Copy MathML</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('asciimath')" title="Copy AsciiMath sample">Copy AsciiMath</button>
       </div>
     </div>
   </div>

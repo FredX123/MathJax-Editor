@@ -1,22 +1,67 @@
-# MathEditorDemo
+# MathJax Editor (Angular 19 workspace)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+This workspace contains a reusable standalone library and a minimal demo app:
 
-## Install Node Packages
-Run `npm install` to insall node packages.
+- Library: `projects/mathjax-editor` — a standalone Angular 19 component for editing and rendering math with MathJax (TeX, MathML, AsciiMath)
+- Demo app: `projects/demo-host` — hosts the library for manual testing
 
-## Development server
+Refer to the library’s README for full install/usage docs: `projects/mathjax-editor/README.md`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Prerequisites
 
-## Build
+- Node.js LTS, npm
+- Install dependencies: `npm install`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Run the demo app
 
-## Running unit tests
+The demo app is configured to use the library directly in the workspace.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `npm start` (or `ng serve demo-host`)
+- Open http://localhost:4200
 
-## Running end-to-end tests
+## Build the library
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+ng build mathjax-editor
+```
+
+Artifacts are emitted to `dist/mathjax-editor`.
+
+## Use the library in your app (summary)
+
+See `projects/mathjax-editor/README.md` for details. Quick start:
+
+1) Add MathJax to your app (angular.json assets/scripts and index.html config)
+
+2) Import and use the editor (standalone):
+
+```
+import { MathEditorComponent } from 'mathjax-editor';
+
+// template
+<app-math-editor [(value)]="content"></app-math-editor>
+```
+
+Support includes Reactive Forms (`[formControl]`) and Template-driven (`[(ngModel)]`).
+
+## Extending symbol groups
+
+Host apps can provide additional/override groups via DI token:
+
+```
+import { MATHJAX_ADDITIONAL_GROUPS } from 'mathjax-editor';
+
+providers: [
+  { provide: MATHJAX_ADDITIONAL_GROUPS, useValue: { tex: [/* groups */], mathml: [], asciimath: [] } }
+]
+```
+
+## Notes
+
+- Mode switch changes how preview is parsed; it does not convert your text between syntaxes.
+- AsciiMath prose must be wrapped with `text("...")`. You can prefix a line with `center:` to center it in preview.
+
+## Project structure
+
+- `projects/mathjax-editor` — library source and README
+- `projects/demo-host` — demo application that imports the library
