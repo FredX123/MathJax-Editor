@@ -4,6 +4,7 @@ import { FormGroup, FormControl, ReactiveFormsModule, ControlValueAccessor, NG_V
 import { MathJaxDirective } from '../shared/directives/mathjax.directive';
 import { MathSymbolsComponent } from '../math-symbols/math-symbols.component';
 import { PaletteMode } from '../shared/data/math-palettes';
+import { HELP_SAMPLES } from '../shared/data/help-samples';
 
 // Note: Removed default samples; content is now driven entirely by host inputs
 
@@ -54,117 +55,8 @@ export class MathEditorComponent implements OnInit, ControlValueAccessor {
 
   @Output() valueChange = new EventEmitter<string>();
 
-  // Help dialog state and samples (for copy/paste)
+  // Help dialog state (samples moved to HELP_SAMPLES)
   showHelp = false;
-  readonly samples: Record<PaletteMode, string> = {
-    tex: [
-      '(a) What is the value of \\(\\sqrt{\\sqrt{81} + \\sqrt{9} - \\sqrt{64}}\\)?',
-      '<br>',
-      '(b) Determine all real numbers \\(x\\) for which \\(\\dfrac{1}{\\sqrt{x^{2}+7}}=\\dfrac{1}{4}\\).',
-      '<br>',
-      '(c) Determine all triples \\((x,y,z)\\) of real numbers that are solutions to the following system of equations:',
-      '\\[',
-      '\\begin{aligned}',
-      '\\log_{9} x + \\log_{9} y + \\log_{3} z &= 2\\\\',
-      '\\log_{16} x + \\log_{4} y + \\log_{16} z &= 1\\\\',
-      '\\log_{5} x + \\log_{25} y + \\log_{25} z &= 0',
-      '\\end{aligned}',
-      '\\]'
-    ].join('\n'),
-    mathml: [
-      '<math display="inline">',
-      '  <mrow>',
-      '    <mtext>(a) What is the value of </mtext>',
-      '    <msqrt>',
-      '      <mrow>',
-      '        <msqrt><mn>81</mn></msqrt>',
-      '        <mo>+</mo>',
-      '        <msqrt><mn>9</mn></msqrt>',
-      '        <mo>&#x2212;</mo>',
-      '        <msqrt><mn>64</mn></msqrt>',
-      '      </mrow>',
-      '    </msqrt>',
-      '    <mtext>?</mtext>',
-      '  </mrow>',
-      '</math>',
-      '<br>',
-      '<math display="inline">',
-      '  <mrow>',
-      '    <mtext>(b) Determine all real numbers </mtext>',
-      '    <mi>x</mi>',
-      '    <mtext> for which </mtext>',
-      '    <mfrac>',
-      '      <mn>1</mn>',
-      '      <msqrt>',
-      '        <mrow>',
-      '          <msup><mi>x</mi><mn>2</mn></msup>',
-      '          <mo>+</mo>',
-      '          <mn>7</mn>',
-      '        </mrow>',
-      '      </msqrt>',
-      '    </mfrac>',
-      '    <mo>=</mo>',
-      '    <mfrac><mn>1</mn><mn>4</mn></mfrac>',
-      '    <mtext>.</mtext>',
-      '  </mrow>',
-      '</math>',
-      '<br>',
-      '<math display="inline">',
-      '  <mrow>',
-      '    <mtext>(c) Determine all triples (x, y, z) of real numbers that are solutions to the following system of equations: </mtext>',
-      '  </mrow>',
-      '</math>',
-      '<br>',
-      '<math display="block">',
-      '  <mtable>',
-      '    <mtr>',
-      '      <mtd>',
-      '        <mrow>',
-      '          <msub><mi>log</mi><mn>9</mn></msub><mi>x</mi>',
-      '          <mo>+</mo>',
-      '          <msub><mi>log</mi><mn>9</mn></msub><mi>y</mi>',
-      '          <mo>+</mo>',
-      '          <msub><mi>log</mi><mn>3</mn></msub><mi>z</mi>',
-      '          <mo>=</mo><mn>2</mn>',
-      '        </mrow>',
-      '      </mtd>',
-      '    </mtr>',
-      '    <mtr>',
-      '      <mtd>',
-      '        <mrow>',
-      '          <msub><mi>log</mi><mn>16</mn></msub><mi>x</mi>',
-      '          <mo>+</mo>',
-      '          <msub><mi>log</mi><mn>4</mn></msub><mi>y</mi>',
-      '          <mo>+</mo>',
-      '          <msub><mi>log</mi><mn>16</mn></msub><mi>z</mi>',
-      '          <mo>=</mo><mn>1</mn>',
-      '        </mrow>',
-      '      </mtd>',
-      '    </mtr>',
-      '    <mtr>',
-      '      <mtd>',
-      '        <mrow>',
-      '          <msub><mi>log</mi><mn>5</mn></msub><mi>x</mi>',
-      '          <mo>+</mo>',
-      '          <msub><mi>log</mi><mn>25</mn></msub><mi>y</mi>',
-      '          <mo>+</mo>',
-      '          <msub><mi>log</mi><mn>25</mn></msub><mi>z</mi>',
-      '          <mo>=</mo><mn>0</mn>',
-      '        </mrow>',
-      '      </mtd>',
-      '    </mtr>',
-      '  </mtable>',
-      '</math>'
-    ].join('\n'),
-    asciimath: [
-      '`(b) What is the value of `  sqrt(sqrt(81)+sqrt(9)-sqrt(64)) ` ?`',
-      '`(c) Determine all real numbers ` x  ` for which ` 1/sqrt(x^2+7) = 1/4 `.`',
-      '`(c) Determine all triples (` x, y, z `) of real numbers that are solutions to the following system of equations:`',
-      'log_9 x + log_9 y + log_3 z = 2',
-      'log_16 x + log_4 y + log_16 z = 1',
-      'log_5 x + log_25 y + log_25 z = 0'
-    ].join('\n')
-  };
 
   constructor() {
     this.mathForm = new FormGroup({
@@ -246,7 +138,12 @@ export class MathEditorComponent implements OnInit, ControlValueAccessor {
         for (const raw of lines) {
           const trimmed = (raw ?? '').trim();
           if (!trimmed) continue;
-          segments.push(`\`${trimmed}\`<br>`);
+          if (/^center:\s*/i.test(trimmed)) {
+            const expr = trimmed.replace(/^center:\s*/i, '');
+            segments.push(`<div class="am-center">\`${expr}\`</div>`);
+          } else {
+            segments.push(`\`${trimmed}\`<br>`);
+          }
         }
         this.renderedContent = segments.join('').replace(/(<br>)+$/, '');
         break;
@@ -346,7 +243,7 @@ export class MathEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   copySample(mode: PaletteMode): void {
-    const text = this.samples[mode] ?? '';
+    const text = HELP_SAMPLES[mode] ?? '';
     if (!text) { return; }
     if (navigator && 'clipboard' in navigator && (navigator as any).clipboard?.writeText) {
       (navigator as any).clipboard.writeText(text).catch(() => this.fallbackCopy(text));
@@ -369,5 +266,11 @@ export class MathEditorComponent implements OnInit, ControlValueAccessor {
     } catch {
       // no-op
     }
+  }
+
+  // Build a rendered preview for the help dialog based on TeX sample
+  get helpPreviewContent(): string {
+    // Always render the TeX sample in the help dialog
+    return HELP_SAMPLES.tex ?? '';
   }
 }
