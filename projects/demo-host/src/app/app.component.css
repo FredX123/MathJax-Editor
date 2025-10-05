@@ -7,6 +7,7 @@
   white-space: pre-wrap;      /* preserve newlines, wrap long lines */
   word-break: break-word;     /* break long words when needed */
   overflow-wrap: anywhere;    /* allow breaks anywhere if necessary */
+  max-height: 160px;
 }
 
 .output pre {

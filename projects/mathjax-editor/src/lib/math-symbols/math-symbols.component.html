@@ -1,35 +1,43 @@
 <div class="math-symbols">
   <div class="tabs-symbols-container">
-    <!-- Tabs -->
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <button
-          type="button"
-          class="nav-link"
-          [class.active]="currentTab === SEARCH_TAB"
-          (click)="activateTab($event, SEARCH_TAB)"
-          (keydown)="activateTab($event, SEARCH_TAB)"
-        >
-          Search
-        </button>
-      </li>
-      <li class="nav-item" *ngFor="let group of symbolGroups">
-        <button
-          type="button"
-          class="nav-link"
-          [class.active]="currentTab === group.title"
-          (click)="activateTab($event, group.title)"
-          (keydown)="activateTab($event, group.title)"
-        >
-          {{ group.title }}
-        </button>
-      </li>
-    </ul>
+    <div class="palette-header d-flex align-items-center flex-wrap gap-2">
+      <!-- Search on the left -->
+      <div class="search-bar">
+        <div class="input-group input-group-sm">
+          <span class="input-group-text" aria-hidden="true">🔍</span>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            placeholder="Search symbols..."
+            [value]="searchTerm"
+            (input)="onSearch($any($event.target).value)"
+            aria-label="Search symbols"
+          />
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            *ngIf="searchTerm"
+            (click)="clearSearch()"
+            aria-label="Clear search"
+            title="Clear search"
+          >✕</button>
+        </div>
+      </div>
 
-    <!-- Search input -->
-    <div class="search-bar" *ngIf="currentTab === SEARCH_TAB">
-      <input type="text" class="form-control" placeholder="Search symbols..." [value]="searchTerm" (input)="onSearch($any($event.target).value)" />
-      <div class="search-hint" *ngIf="!searchTerm">Type to search across all groups</div>
+      <!-- Tabs -->
+      <ul class="nav nav-tabs ms-2">
+        <li class="nav-item" *ngFor="let group of symbolGroups">
+          <button
+            type="button"
+            class="nav-link"
+            [class.active]="currentTab === group.title"
+            (click)="activateTab($event, group.title)"
+            (keydown)="activateTab($event, group.title)"
+          >
+            {{ group.title }}
+          </button>
+        </li>
+      </ul>
     </div>
 
     <!-- Symbols Container -->

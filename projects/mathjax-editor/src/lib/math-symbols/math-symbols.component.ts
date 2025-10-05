@@ -19,7 +19,6 @@ export class MathSymbolsComponent implements OnInit, OnChanges {
 
   symbolGroups: MathSymbolGroup[] = [];
   currentTab: string = '';
-  readonly SEARCH_TAB = '__SEARCH__';
   searchTerm = '';
 
   constructor(private cd: ChangeDetectorRef) {}
@@ -51,12 +50,16 @@ export class MathSymbolsComponent implements OnInit, OnChanges {
       }
       event.preventDefault();
     }
-
+    // Best practice: when switching groups, clear an active cross-group search
+    if (this.searchTerm) {
+      this.clearSearch();
+    }
     this.setCurrentTab(group);
   }
 
   get currentSymbols(): MathSymbol[] {
-    if (this.currentTab === this.SEARCH_TAB) {
+    const q = this.searchTerm.trim();
+    if (q) {
       return this.searchResults;
     }
     const group = this.symbolGroups.find(g => g.title === this.currentTab);
@@ -69,24 +72,21 @@ export class MathSymbolsComponent implements OnInit, OnChanges {
     const extras = this.additional ?? ({} as Record<PaletteMode, MathSymbolGroup[]>);
     const extraGroups = extras[this.mode] ?? [];
     this.symbolGroups = [
-      // groups except Search tab; search is a virtual tab
-      ... (MATH_PALETTES[this.mode] ?? []),
-      ... extraGroups
+      ...(MATH_PALETTES[this.mode] ?? []),
+      ...extraGroups
     ];
-    // default to first group if not searching
-    this.currentTab = this.currentTab && this.currentTab !== this.SEARCH_TAB
-      ? this.currentTab
-      : (this.symbolGroups[0]?.title ?? '');
+    // default to first group
+    this.currentTab = this.currentTab || (this.symbolGroups[0]?.title ?? '');
     this.cd.markForCheck();
   }
 
   onSearch(term: string): void {
     this.searchTerm = term;
-    if (this.searchTerm.trim()) {
-      this.currentTab = this.SEARCH_TAB;
-    } else if (this.currentTab === this.SEARCH_TAB) {
-      this.currentTab = this.symbolGroups[0]?.title ?? '';
-    }
+    this.cd.markForCheck();
+  }
+
+  clearSearch(): void {
+    this.searchTerm = '';
     this.cd.markForCheck();
   }
 
