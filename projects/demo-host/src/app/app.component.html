@@ -1,0 +1,32 @@
+<div class="app-container">
+  <div class="content-container">
+    <ul class="nav nav-tabs mb-3" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button type="button" class="nav-link" [class.active]="activeTab === 'bind'" (click)="activeTab = 'bind'" role="tab" aria-controls="tab-bind" [attr.aria-selected]="activeTab === 'bind'">Two-way binding</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button type="button" class="nav-link" [class.active]="activeTab === 'form'" (click)="activeTab = 'form'" role="tab" aria-controls="tab-form" [attr.aria-selected]="activeTab === 'form'">Reactive Forms</button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="tab-bind" class="tab-pane fade" [class.show]="activeTab === 'bind'" [class.active]="activeTab === 'bind'" role="tabpanel">
+        <div class="mb-2">
+          <section class="output">
+            <pre>{{ content }}</pre>
+          </section>
+        </div>
+        <app-math-editor [(value)]="content"></app-math-editor>
+      </div>
+
+      <div id="tab-form" class="tab-pane fade" [class.show]="activeTab === 'form'" [class.active]="activeTab === 'form'" role="tabpanel">
+        <div class="mb-2">
+          <section class="output">
+            <pre>{{ editorControl.value }}</pre>
+          </section>
+        </div>
+        <app-math-editor [formControl]="editorControl"></app-math-editor>
+      </div>
+    </div>
+  </div>
+</div>
