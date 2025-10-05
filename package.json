@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve demo-host",
     "build": "ng build demo-host",
+    "build:lib": "ng build mathjax-editor",
     "publish:lib": "ng build mathjax-editor && cd dist/mathjax-editor && npm publish --access public",
     "watch": "ng build demo-host --watch --configuration development",
     "test": "echo \"No tests configured\""
