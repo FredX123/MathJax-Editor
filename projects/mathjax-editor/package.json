@@ -1,6 +1,6 @@
 {
   "name": "@mathcode/mathjax-editor",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Standalone Angular components for editing and rendering MathJax (TeX/MathML/AsciiMath).",
   "keywords": [
     "angular",
@@ -34,7 +34,16 @@
       "optional": true
     }
   },
+  "type": "module",
   "sideEffects": false,
+  "module": "./fesm2022/mathcode-mathjax-editor.mjs",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./fesm2022/mathcode-mathjax-editor.mjs"
+    }
+  },
   "files": [
     "bundles/",
     "fesm2022/",
