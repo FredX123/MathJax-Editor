@@ -1,18 +1,17 @@
-# mathjax-editor (Angular 19 standalone library)
+# @mathcode/mathjax-editor
 
-Reusable, standalone Angular components for editing and rendering math with MathJax (TeX, MathML, AsciiMath).
+Standalone Angular 19 components for editing and rendering math with MathJax.
+Supports TeX, MathML, and AsciiMath; includes a compact symbol palette with search.
 
 ## Install
 
-Add dependencies to your app:
-
 ```
-npm i mathjax
+npm i @mathcode/mathjax-editor mathjax
 ```
 
-Add MathJax to your build (Angular CLI):
+Configure MathJax in your app (Angular CLI):
 
-- `angular.json` (application project):
+1) angular.json (application project)
 
 ```
 "assets": [
@@ -26,7 +25,7 @@ Add MathJax to your build (Angular CLI):
 ]
 ```
 
-Configure MathJax in `src/index.html` before the script runs:
+2) src/index.html (define config before script loads)
 
 ```
 <script>
@@ -37,47 +36,18 @@ Configure MathJax in `src/index.html` before the script runs:
     svg: { fontCache: 'global' },
     startup: { typeset: false }
   };
-  // MathJax script is loaded by angular.json scripts
 </script>
 ```
 
-## Usage
+## Quick usage
 
-All components are standalone. Import and use directly in any component.
+All components are standalone. Import and drop into any component.
 
-```
-import { MathEditorComponent } from 'mathjax-editor';
-```
-
-### Two-way binding
-
-```
-// component.ts
-content = '';
-
-// template
-<app-math-editor [(value)]="content"></app-math-editor>
-```
-
-### Reactive Forms
-
-```
-// component.ts
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-editorControl = new FormControl('', { nonNullable: true });
-
-// component metadata
-imports: [ReactiveFormsModule, MathEditorComponent]
-
-// template
-<app-math-editor [formControl]="editorControl"></app-math-editor>
-```
-
-### Template-driven (ngModel)
-
+Template‑driven (ngModel)
 ```
 // component.ts
 import { FormsModule } from '@angular/forms';
+import { MathEditorComponent } from '@mathcode/mathjax-editor';
 content = '';
 
 // component metadata
@@ -87,46 +57,58 @@ imports: [FormsModule, MathEditorComponent]
 <app-math-editor name="math" [(ngModel)]="content"></app-math-editor>
 ```
 
-## Symbol palette
-
-- Tabs group symbols; search filters across all groups.
-- Click to insert at cursor. Snippets may include a placeholder bullet `•` — type over it.
-- Keyboard shortcuts: `Ctrl+I` inserts an inline snippet; `Ctrl+K` inserts a block snippet.
-
-## Modes
-
-- TeX / MathML / AsciiMath supported. Switching mode changes how the preview is parsed; it does not convert your text.
-- AsciiMath specifics:
-  - Plain prose must be wrapped with `text("...")`.
-  - Start a line with `center:` to render that line centered in preview.
-
-## Extending symbol groups
-
-Provide additional or override groups using the injection token:
-
+Reactive Forms
 ```
-import { MATHJAX_ADDITIONAL_GROUPS } from 'mathjax-editor';
+// component.ts
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MathEditorComponent } from '@mathcode/mathjax-editor';
+editorControl = new FormControl('', { nonNullable: true });
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    { provide: MATHJAX_ADDITIONAL_GROUPS, useValue: { tex: [/* groups */], mathml: [], asciimath: [] } }
-  ]
-});
+// component metadata
+imports: [ReactiveFormsModule, MathEditorComponent]
+
+// template
+<app-math-editor [formControl]="editorControl"></app-math-editor>
 ```
 
-## API
+Two‑way binding
+```
+content = '';
+<app-math-editor [(value)]="content"></app-math-editor>
+```
 
-`<app-math-editor>`
+## Inputs / Outputs
 
-- Inputs/Outputs
-  - `@Input() value: string`
-  - `@Output() valueChange: EventEmitter<string>` (enables `[(value)]`)
-- Forms
-  - Implements ControlValueAccessor (`[formControl]`, `formControlName`, `[(ngModel)]`)
-  - Supports disabled state
+- `@Input() value: string` — current editor content
+- `@Output() valueChange: EventEmitter<string>` — emitted on user edits (enables `[(value)]`)
+- ControlValueAccessor — works with `[formControl]`, `formControlName`, `[(ngModel)]`; supports disabled state
+
+## Minimal example (standalone AppComponent)
+
+```
+// main.ts
+import { bootstrapApplication } from '@angular/platform-browser';
+import { importProvidersFrom, Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MathEditorComponent } from '@mathcode/mathjax-editor';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  template: `
+    <h3>MathJax Editor</h3>
+    <app-math-editor name="math" [(ngModel)]="content"></app-math-editor>
+    <pre>{{ content }}</pre>
+  `,
+  imports: [FormsModule, MathEditorComponent]
+})
+class AppComponent { content = ''; }
+
+bootstrapApplication(AppComponent, { providers: [importProvidersFrom(FormsModule)] });
+```
 
 ## Notes
 
-- Requires Angular 19+.
-- `mathjax` is a peer runtime dependency; configure it as shown above.
-
+- Mode switch changes how preview is parsed; it does not convert syntax.
+- AsciiMath prose: with the default MathJax v4 AsciiMath setup, `text("...")` is not supported. Plain words inside an AsciiMath expression are treated as math identifiers. If you need prose, keep it outside the editor, or switch to TeX mode and use `\text{...}` (with the appropriate TeX configuration).
+- Centering: there is no built‑in “center:” prefix for AsciiMath lines. Use page layout/CSS to center the preview container, or prefer TeX display environments for centered equations.

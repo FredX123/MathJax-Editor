@@ -1,5 +1,5 @@
 {
-  "name": "math-editor-demo",
+  "name": "math-editor",
   "version": "2024.9.15",
   "scripts": {
     "ng": "ng",

@@ -4,9 +4,9 @@ import { PaletteMode } from './math-palettes';
 export const HELP_SAMPLES: Record<PaletteMode, string> = {
   // TeX: ensure (a), (b), (c) are on separate lines via <br>
   tex: [
-    '(a) What is the value of \\((\\sqrt{\\sqrt{81} + \\sqrt{9} - \\sqrt{64}})\\)?',
+    '(a) What is the value of \\(\\sqrt{\\sqrt{81} + \\sqrt{9} - \\sqrt{64}}\\)?',
     '<br>',
-    '(b) Determine all real numbers \\(x\\) for which \\((\\dfrac{1}{\\sqrt{x^{2}+7}}=\\dfrac{1}{4})\\).',
+    '(b) Determine all real numbers \\(x\\) for which \\(\\dfrac{1}{\\sqrt{x^{2}+7}}=\\dfrac{1}{4}\\).',
     '<br>',
     '(c) Determine all triples \\((x,y,z)\\) of real numbers that are solutions to the following system of equations:',
     '\\[',
@@ -22,7 +22,8 @@ export const HELP_SAMPLES: Record<PaletteMode, string> = {
   mathml: [
     '<math display="inline">',
     '  <mrow>',
-    '    <mtext>(a) What is the value of </mtext>',
+    '    <mtext>(a) What is the value of</mtext>',
+    '    <mspace width="0.25em"/>',
     '    <msqrt>',
     '      <mrow>',
     '        <msqrt><mn>81</mn></msqrt>',
@@ -40,7 +41,8 @@ export const HELP_SAMPLES: Record<PaletteMode, string> = {
     '  <mrow>',
     '    <mtext>(b) Determine all real numbers </mtext>',
     '    <mi>x</mi>',
-    '    <mtext> for which </mtext>',
+    '    <mtext> for which</mtext>',
+    '    <mspace width="0.25em"/>',
     '    <mfrac>',
     '      <mn>1</mn>',
     '      <msqrt>',
@@ -56,7 +58,13 @@ export const HELP_SAMPLES: Record<PaletteMode, string> = {
     '    <mtext>.</mtext>',
     '  </mrow>',
     '</math>',
-    '<p>(c) Determine all triples (x, y, z) of real numbers that are solutions to the following system of equations:</p>',
+    '<br>',
+    '<math display="inline">',
+    '  <mrow>',
+    '    <mtext>(c) Determine all triples (x, y, z) of real numbers that are solutions to the following system of equations: </mtext>',
+    '  </mrow>',
+    '</math>',
+    '<br>',
     '<math display="block">',
     '  <mtable>',
     '    <mtr>',
@@ -102,12 +110,12 @@ export const HELP_SAMPLES: Record<PaletteMode, string> = {
   // AsciiMath: component wraps lines in backticks and inserts <br>
   // Use center: prefix for centered lines
   asciimath: [
-    'text("(a) What is the value of ") sqrt( sqrt(81) + sqrt(9) - sqrt(64) ) text("?")',
-    'text("(b) Determine all real numbers ") x text(" for which ") 1/sqrt(x^2 + 7) = 1/4 text(".")',
-    'text("(c) Determine all triples (x, y, z) of real numbers that are solutions to the following system of equations:")',
-    'center: log_9 x + log_9 y + log_3 z = 2',
-    'center: log_16 x + log_4 y + log_16 z = 1',
-    'center: log_5 x + log_25 y + log_25 z = 0'
+    '`(b) What is the value of `  sqrt(sqrt(81)+sqrt(9)-sqrt(64)) ` ?`',
+    '`(c) Determine all real numbers ` x  ` for which ` 1/sqrt(x^2+7) = 1/4 `.`',
+    '`(c) Determine all triples (` x, y, z `) of real numbers that are solutions to the following system of equations:`',
+    'log_9 x + log_9 y + log_3 z = 2',
+    'log_16 x + log_4 y + log_16 z = 1',
+    'log_5 x + log_25 y + log_25 z = 0'
   ].join('\n')
 };
 

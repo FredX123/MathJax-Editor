@@ -2,7 +2,7 @@
 
 This workspace contains a reusable standalone library and a minimal demo app:
 
-- Library: `projects/mathjax-editor` — a standalone Angular 19 component for editing and rendering math with MathJax (TeX, MathML, AsciiMath)
+- Library: `projects/mathjax-editor` — a standalone Angular 19 component for editing and rendering math with MathJax (TeX, MathML, AsciiMath) published as `@mathcode/mathjax-editor`
 - Demo app: `projects/demo-host` — hosts the library for manual testing
 
 Refer to the library’s README for full install/usage docs: `projects/mathjax-editor/README.md`.
@@ -36,7 +36,7 @@ See `projects/mathjax-editor/README.md` for details. Quick start:
 2) Import and use the editor (standalone):
 
 ```
-import { MathEditorComponent } from 'mathjax-editor';
+import { MathEditorComponent } from '@mathcode/mathjax-editor';
 
 // template
 <app-math-editor [(value)]="content"></app-math-editor>
