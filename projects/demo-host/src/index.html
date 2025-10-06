@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DemoHost</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- 1) Global MathJax configuration (define window.MathJax BEFORE the script) -->
+  <script>
+    window.MathJax = {
+
+      // Load TeX + MathML by default; also load AsciiMath input
+      loader: {
+        load: ['input/tex', 'input/mml', 'input/asciimath']
+      },
+
+      // 1. TeX input options (add both \( \) and $ $ for inline; \[ \] and $$ $$ for display)
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        processEscapes: true
+      },
+
+      // 2. AsciiMath uses backticks by default:  `inline`   and   `` display ``
+      // You usually don't need to configure anything here, but it can be customized:
+      asciimath: {
+        delimiters: [['`','`']]
+      },
+
+      // What parts of the page to typeset (typical defaults)
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        processHtmlClass: 'mathjax-process',   // only typeset elements with this class (optional)
+        ignoreHtmlClass: 'tex2jax_ignore'      // and/or ignore this class
+      },
+
+      svg: {
+        fontCache: 'global'
+      },
+
+      // Startup behavior. If your Angular component will call MathJax.typesetPromise() manually,
+      // set typeset:false to prevent initial auto-typeset.
+      startup: {
+        typeset: false
+      }
+    };
+  </script>
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
+

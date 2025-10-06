@@ -1,0 +1,19 @@
+/* optional host styles */
+.app-container { padding: 12px; }
+.content-container { max-width: 960px; margin: 0 auto; }
+
+/* Wrap long lines in preview blocks */
+.output pre {
+  white-space: pre-wrap;      /* preserve newlines, wrap long lines */
+  word-break: break-word;     /* break long words when needed */
+  overflow-wrap: anywhere;    /* allow breaks anywhere if necessary */
+  max-height: 160px;
+}
+
+.output pre {
+  background: #f6f7fb;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,63 @@
+/* Remove any position settings from .math-symbols and .symbols-container */
+.math-symbols {
+  /* No need for position: relative; */
+}
+
+.symbols-container {
+  background-color: white;
+  padding: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 12px;
+}
+
+.palette-header { gap: 6px; }
+.search-bar { padding: 0; min-width: 200px; flex: 0 0 240px; max-width: 280px; }
+.search-bar .input-group { width: 100%; }
+
+.symbol-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  justify-content: flex-start;
+}
+
+.symbol-box {
+  flex: 0 1 auto;
+  min-width: 28px;
+  padding: 2px 4px;
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: center;
+  border: 1px solid lightgray;
+  cursor: pointer;
+  transition: border 0.2s ease, background-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.symbol-box:hover {
+  border: 1px solid black;
+  background-color: rgb(234, 232, 232);
+  font-weight: bold;
+}
+
+/* Compact tabs for groups */
+.nav-tabs { /* reserved for overrides if needed */ }
+.nav.nav-tabs {
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+  gap: 2px;
+  border-bottom: none; /* remove bottom line under tabs */
+}
+.nav-tabs .nav-item { margin-bottom: 0; }
+.nav-tabs .nav-link {
+  padding: 2px 6px;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+/* Smaller search input */
+.search-bar .form-control {
+  padding: 2px 6px;
+  height: auto;
+  font-size: 0.9rem;
+}

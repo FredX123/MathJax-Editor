@@ -1,0 +1,58 @@
+{
+  "name": "@mathcode/mathjax-editor",
+  "version": "0.3.0",
+  "description": "Standalone Angular components for editing and rendering MathJax (TeX/MathML/AsciiMath).",
+  "keywords": [
+    "angular",
+    "mathjax",
+    "editor",
+    "tex",
+    "mathml",
+    "asciimath"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FredX123/MathJax-Editor.git"
+  },
+  "author": "Fred X",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@angular/forms": "^19.0.0",
+    "rxjs": "^7.8.0",
+    "mathjax": "^4.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "peerDependenciesMeta": {
+    "mathjax": {
+      "optional": true
+    }
+  },
+  "type": "module",
+  "sideEffects": false,
+  "module": "./fesm2022/mathcode-mathjax-editor.mjs",
+  "main": "./fesm2022/mathcode-mathjax-editor.mjs",
+  "types": "./index.d.ts",
+  "typings": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./fesm2022/mathcode-mathjax-editor.mjs"
+    }
+  },
+  "files": [
+    "bundles/",
+    "fesm2022/",
+    "esm2022/",
+    "**/*.d.ts",
+    "**/*.d.ts.map",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ]
+}
