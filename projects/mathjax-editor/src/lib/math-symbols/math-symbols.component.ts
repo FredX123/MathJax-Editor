@@ -8,7 +8,7 @@ import { MATHJAX_ADDITIONAL_GROUPS } from '../shared/tokens/symbols.token';
   selector: 'app-math-symbols',
   standalone: true,
   templateUrl: './math-symbols.component.html',
-  styleUrls: ['./math-symbols.component.css'],
+  styleUrls: ['./math-symbols.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgFor, NgIf]
 })

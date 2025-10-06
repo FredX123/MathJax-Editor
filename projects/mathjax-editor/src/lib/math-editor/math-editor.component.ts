@@ -12,7 +12,7 @@ import { HELP_SAMPLES } from '../shared/data/help-samples';
   selector: 'app-math-editor',
   standalone: true,
   templateUrl: './math-editor.component.html',
-  styleUrls: ['./math-editor.component.css'],
+  styleUrls: ['./math-editor.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, MathJaxDirective, MathSymbolsComponent, ReactiveFormsModule, NgFor],
   providers: [
