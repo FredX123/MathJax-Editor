@@ -1,3 +1,5 @@
+@use "../../mathjax-editor/src/lib/styles/mc-ui";
+
 /* Global styles for demo-host app */
 html, body { height: 100%; }
 body {
@@ -7,6 +9,3 @@ body {
   color: rgba(33, 37, 41, 0.75);
   line-height: 1.5
 }
-
-// Import MC UI utilities and components to replace Bootstrap usage
-@import "../../mathjax-editor/src/lib/styles/mc-ui.scss";
