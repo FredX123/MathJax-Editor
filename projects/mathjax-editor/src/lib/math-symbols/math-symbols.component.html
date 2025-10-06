@@ -1,13 +1,13 @@
 <div class="math-symbols">
   <div class="tabs-symbols-container">
-    <div class="palette-header d-flex align-items-center flex-wrap gap-2">
+    <div class="palette-header mc-d-flex mc-align-items-center mc-flex-wrap mc-gap-2">
       <!-- Search on the left -->
       <div class="search-bar">
-        <div class="input-group input-group-sm">
-          <span class="input-group-text" aria-hidden="true">🔍</span>
+        <div class="mc-input-group mc-input-group-sm">
+          <span class="mc-input-group-text" aria-hidden="true">🔍</span>
           <input
             type="text"
-            class="form-control form-control-sm"
+            class="mc-form-control mc-form-control-sm"
             placeholder="Search symbols..."
             [value]="searchTerm"
             (input)="onSearch($any($event.target).value)"
@@ -15,7 +15,7 @@
           />
           <button
             type="button"
-            class="btn btn-outline-secondary"
+            class="mc-btn mc-btn-outline-secondary"
             *ngIf="searchTerm"
             (click)="clearSearch()"
             aria-label="Clear search"
@@ -25,11 +25,11 @@
       </div>
 
       <!-- Tabs -->
-      <ul class="nav nav-tabs ms-2">
-        <li class="nav-item" *ngFor="let group of symbolGroups">
+      <ul class="mc-nav mc-nav-tabs mc-ms-2">
+        <li class="mc-nav-item" *ngFor="let group of symbolGroups">
           <button
             type="button"
-            class="nav-link"
+            class="mc-nav-link"
             [class.active]="currentTab === group.title"
             (click)="activateTab($event, group.title)"
             (keydown)="activateTab($event, group.title)"

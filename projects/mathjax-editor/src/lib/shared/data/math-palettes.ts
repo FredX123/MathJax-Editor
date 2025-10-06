@@ -116,6 +116,16 @@ const TEX_GROUPS: MathSymbolGroup[] = [
     ]
   },
   {
+    title: 'Accents (wide)',
+    items: [
+      { title: '\\overline{•}', preview: 'x̄', snippet: '\\overline{•}' },
+      { title: '\\underline{•}', preview: 'x̲', snippet: '\\underline{•}' },
+      { title: '\\vec{•}', preview: '→x', snippet: '\\vec{•}' },
+      { title: '\\overbrace{•}^{•}', preview: '⏞', snippet: '\\overbrace{•}^{•}' },
+      { title: '\\underbrace{•}_{•}', preview: '⏟', snippet: '\\underbrace{•}_{•}' }
+    ]
+  },
+  {
     title: 'Delimiters',
     items: [
       { title: '( )', preview: '(•)', snippet: '\\left( • \\right)' },
@@ -261,16 +271,6 @@ const TEX_GROUPS: MathSymbolGroup[] = [
     ]
   },
   {
-    title: 'Accents (wide)',
-    items: [
-      { title: '\\overline{•}', preview: 'x̄', snippet: '\\overline{•}' },
-      { title: '\\underline{•}', preview: 'x̲', snippet: '\\underline{•}' },
-      { title: '\\vec{•}', preview: '→x', snippet: '\\vec{•}' },
-      { title: '\\overbrace{•}^{•}', preview: '⏞', snippet: '\\overbrace{•}^{•}' },
-      { title: '\\underbrace{•}_{•}', preview: '⏟', snippet: '\\underbrace{•}_{•}' }
-    ]
-  },
-  {
     title: 'Fonts (letters)',
     items: [
       { title: '\\mathbb{R}', preview: 'ℝ', snippet: '\\mathbb{R}' },
@@ -348,6 +348,16 @@ const MATHML_GROUPS: MathSymbolGroup[] = [
       { title: 'hat', preview: 'ŷ', snippet: '<mover><mi>•</mi><mo>^</mo></mover>' },
       { title: 'bar', preview: 'x̄', snippet: '<mover><mi>•</mi><mo>¯</mo></mover>' },
       { title: 'tilde', preview: 'ã', snippet: '<mover><mi>•</mi><mo>˜</mo></mover>' }
+    ]
+  },
+  {
+    title: 'Accents (wide)',
+    items: [
+      { title: 'overline(•)', preview: 'x̄', snippet: '<mover accent="true"><mrow>•</mrow><mo>‾</mo></mover>' },
+      { title: 'underline(•)', preview: 'x̲', snippet: '<munder accentunder="true"><mrow>•</mrow><mo>‾</mo></munder>' },
+      { title: 'vec(•)', preview: '→x', snippet: '<mover><mi>•</mi><mo>→</mo></mover>' },
+      { title: 'overbrace(•)', preview: '⏞', snippet: '<mover accent="true"><mrow>•</mrow><mo>⏞</mo></mover>' },
+      { title: 'underbrace(•)', preview: '⏟', snippet: '<munder accentunder="true"><mrow>•</mrow><mo>⏟</mo></munder>' }
     ]
   },
   {
@@ -432,6 +442,90 @@ const MATHML_GROUPS: MathSymbolGroup[] = [
       { title: 'bang', preview: '!', snippet: '!' },
       { title: 'quad', preview: 'quad', snippet: 'quad' }
     ]
+  },
+  // Extended parity with TeX groups
+  {
+    title: 'Greek (variants)',
+    items: [
+      { title: 'varepsilon', preview: 'ε', snippet: '<mi>ε</mi>' },
+      { title: 'varphi', preview: 'ϕ', snippet: '<mi>ϕ</mi>' },
+      { title: 'varpi', preview: 'ϖ', snippet: '<mi>ϖ</mi>' },
+      { title: 'varrho', preview: 'ϱ', snippet: '<mi>ϱ</mi>' },
+      { title: 'varsigma', preview: 'ς', snippet: '<mi>ς</mi>' },
+      { title: 'vartheta', preview: 'ϑ', snippet: '<mi>ϑ</mi>' },
+      { title: 'Digamma', preview: 'Ϝ', snippet: '<mi>Ϝ</mi>' },
+      { title: 'digamma', preview: 'ϝ', snippet: '<mi>ϝ</mi>' }
+    ]
+  },
+  {
+    title: 'Arrows (extended)',
+    items: [
+      { title: '↑', preview: '↑', snippet: '<mo>↑</mo>' },
+      { title: '↓', preview: '↓', snippet: '<mo>↓</mo>' },
+      { title: '↕', preview: '↕', snippet: '<mo>↕</mo>' },
+      { title: '⇑', preview: '⇑', snippet: '<mo>⇑</mo>' },
+      { title: '⇓', preview: '⇓', snippet: '<mo>⇓</mo>' },
+      { title: '⇕', preview: '⇕', snippet: '<mo>⇕</mo>' },
+      { title: '↦', preview: '↦', snippet: '<mo>↦</mo>' },
+      { title: '⟶', preview: '⟶', snippet: '<mo>⟶</mo>' },
+      { title: '⟵', preview: '⟵', snippet: '<mo>⟵</mo>' },
+      { title: '⟹', preview: '⟹', snippet: '<mo>⟹</mo>' },
+      { title: '⟸', preview: '⟸', snippet: '<mo>⟸</mo>' },
+      { title: '↭', preview: '↭', snippet: '<mo>↭</mo>' },
+      { title: '⇒', preview: '⇒', snippet: '<mo>⇒</mo>' },
+      { title: '⇔', preview: '⇔', snippet: '<mo>⇔</mo>' }
+    ]
+  },
+  {
+    title: 'Set theory (extended)',
+    items: [
+      { title: '⊊', preview: '⊊', snippet: '<mo>⊊</mo>' },
+      { title: '⊋', preview: '⊋', snippet: '<mo>⊋</mo>' },
+      { title: '⫋', preview: '⫋', snippet: '<mo>⫋</mo>' },
+      { title: '⫌', preview: '⫌', snippet: '<mo>⫌</mo>' },
+      { title: '⊈', preview: '⊈', snippet: '<mo>⊈</mo>' },
+      { title: '⊉', preview: '⊉', snippet: '<mo>⊉</mo>' },
+      { title: '⊏', preview: '⊏', snippet: '<mo>⊏</mo>' },
+      { title: '⊐', preview: '⊐', snippet: '<mo>⊐</mo>' },
+      { title: '⊑', preview: '⊑', snippet: '<mo>⊑</mo>' },
+      { title: '⊒', preview: '⊒', snippet: '<mo>⊒</mo>' }
+    ]
+  },
+  {
+    title: 'Operators (big)',
+    items: [
+      { title: '⋃', preview: '⋃', snippet: '<mo>⋃</mo>' },
+      { title: '⋂', preview: '⋂', snippet: '<mo>⋂</mo>' },
+      { title: '⋈', preview: '⋈', snippet: '<mo>⋈</mo>' },
+      { title: '∐', preview: '∐', snippet: '<mo>∐</mo>' },
+      { title: '⋁', preview: '⋁', snippet: '<mo>⋁</mo>' },
+      { title: '⋀', preview: '⋀', snippet: '<mo>⋀</mo>' },
+      { title: '⊙', preview: '⊙', snippet: '<mo>⊙</mo>' },
+      { title: '⊗', preview: '⊗', snippet: '<mo>⊗</mo>' },
+      { title: '⊕', preview: '⊕', snippet: '<mo>⊕</mo>' }
+    ]
+  },
+  {
+    title: 'Fonts (letters)',
+    items: [
+      { title: 'double-struck R', preview: 'ℝ', snippet: '<mstyle mathvariant="double-struck"><mi>R</mi></mstyle>' },
+      { title: 'double-struck N', preview: 'ℕ', snippet: '<mstyle mathvariant="double-struck"><mi>N</mi></mstyle>' },
+      { title: 'double-struck Q', preview: 'ℚ', snippet: '<mstyle mathvariant="double-struck"><mi>Q</mi></mstyle>' },
+      { title: 'fraktur g', preview: '𝔤', snippet: '<mstyle mathvariant="fraktur"><mi>g</mi></mstyle>' },
+      { title: 'roman d', preview: 'd', snippet: '<mstyle mathvariant="normal"><mi>d</mi></mstyle>' },
+      { title: 'sans-serif A', preview: 'A', snippet: '<mstyle mathvariant="sans-serif"><mi>A</mi></mstyle>' }
+    ]
+  },
+  {
+    title: 'Misc',
+    items: [
+      { title: 'binom(•,•)', preview: '() over ()', snippet: '<mrow><mo>(</mo><mfrac linethickness="0"><mi>•</mi><mi>•</mi></mfrac><mo>)</mo></mrow>' },
+      { title: 'ceil(•)', preview: '⌈•⌉', snippet: '<mfenced open="⌈" close="⌉"><mi>•</mi></mfenced>' },
+      { title: 'floor(•)', preview: '⌊•⌋', snippet: '<mfenced open="⌊" close="⌋"><mi>•</mi></mfenced>' },
+      { title: 'Re', preview: 'ℜ', snippet: '<mi>ℜ</mi>' },
+      { title: 'Im', preview: 'ℑ', snippet: '<mi>ℑ</mi>' },
+      { title: 'operator(•)', preview: 'op(•)', snippet: '<mi>•</mi>' }
+    ]
   }
 ];
 
@@ -482,6 +576,16 @@ const ASCIIMATH_GROUPS: MathSymbolGroup[] = [
       { title: 'hat', preview: 'ŷ', snippet: 'hat(•)' },
       { title: 'bar', preview: 'x̄', snippet: 'bar(•)' },
       { title: 'tilde', preview: 'ã', snippet: 'tilde(•)' }
+    ]
+  },
+  {
+    title: 'Accents (wide)',
+    items: [
+      { title: 'overline(•)', preview: 'x̄', snippet: 'overline(•)' },
+      { title: 'underline(•)', preview: 'x̲', snippet: 'underline(•)' },
+      { title: 'vec(•)', preview: '→x', snippet: 'vec(•)' },
+      { title: 'overbrace(•)', preview: '⏞', snippet: 'overbrace(•)' },
+      { title: 'underbrace(•)', preview: '⏟', snippet: 'underbrace(•)' }
     ]
   },
   {
@@ -565,6 +669,87 @@ const ASCIIMATH_GROUPS: MathSymbolGroup[] = [
       { title: 'semicolon', preview: ';', snippet: ';' },
       { title: 'bang', preview: '!', snippet: '!' },
       { title: 'quad', preview: 'quad', snippet: 'quad' }
+    ]
+  },
+  // Extended parity with TeX groups
+  {
+    title: 'Greek (variants)',
+    items: [
+      { title: 'varepsilon', preview: 'ε', snippet: 'ε' },
+      { title: 'varphi', preview: 'ϕ', snippet: 'ϕ' },
+      { title: 'varpi', preview: 'ϖ', snippet: 'ϖ' },
+      { title: 'varrho', preview: 'ϱ', snippet: 'ϱ' },
+      { title: 'varsigma', preview: 'ς', snippet: 'ς' },
+      { title: 'vartheta', preview: 'ϑ', snippet: 'ϑ' },
+      { title: 'Digamma', preview: 'Ϝ', snippet: 'Ϝ' },
+      { title: 'digamma', preview: 'ϝ', snippet: 'ϝ' }
+    ]
+  },
+  {
+    title: 'Arrows (extended)',
+    items: [
+      { title: 'uparrow', preview: '↑', snippet: '↑' },
+      { title: 'downarrow', preview: '↓', snippet: '↓' },
+      { title: 'updownarrow', preview: '↕', snippet: '↕' },
+      { title: 'Uparrow', preview: '⇑', snippet: '⇑' },
+      { title: 'Downarrow', preview: '⇓', snippet: '⇓' },
+      { title: 'Updownarrow', preview: '⇕', snippet: '⇕' },
+      { title: 'mapsto', preview: '↦', snippet: '↦' },
+      { title: 'longrightarrow', preview: '⟶', snippet: '⟶' },
+      { title: 'longleftarrow', preview: '⟵', snippet: '⟵' },
+      { title: 'Longrightarrow', preview: '⟹', snippet: '⟹' },
+      { title: 'Longleftarrow', preview: '⟸', snippet: '⟸' },
+      { title: 'leftrightsquigarrow', preview: '↭', snippet: '↭' },
+      { title: 'implies', preview: '⇒', snippet: '⇒' },
+      { title: 'iff', preview: '⇔', snippet: '⇔' }
+    ]
+  },
+  {
+    title: 'Set theory (extended)',
+    items: [
+      { title: 'subsetneq', preview: '⊊', snippet: '⊊' },
+      { title: 'supsetneq', preview: '⊋', snippet: '⊋' },
+      { title: 'subsetneqq', preview: '⫋', snippet: '⫋' },
+      { title: 'supsetneqq', preview: '⫌', snippet: '⫌' },
+      { title: 'nsubseteq', preview: '⊈', snippet: '⊈' },
+      { title: 'nsupseteq', preview: '⊉', snippet: '⊉' },
+      { title: 'sqsubset', preview: '⊏', snippet: '⊏' },
+      { title: 'sqsupset', preview: '⊐', snippet: '⊐' },
+      { title: 'sqsubseteq', preview: '⊑', snippet: '⊑' },
+      { title: 'sqsupseteq', preview: '⊒', snippet: '⊒' }
+    ]
+  },
+  {
+    title: 'Operators (big)',
+    items: [
+      { title: 'bigcup', preview: '⋃', snippet: '⋃' },
+      { title: 'bigcap', preview: '⋂', snippet: '⋂' },
+      { title: 'bigsqcup', preview: '⋈', snippet: '⋈' },
+      { title: 'coprod', preview: '∐', snippet: '∐' },
+      { title: 'bigvee', preview: '⋁', snippet: '⋁' },
+      { title: 'bigwedge', preview: '⋀', snippet: '⋀' },
+      { title: 'bigodot', preview: '⊙', snippet: '⊙' },
+      { title: 'bigotimes', preview: '⊗', snippet: '⊗' },
+      { title: 'bigoplus', preview: '⊕', snippet: '⊕' }
+    ]
+  },
+  {
+    title: 'Fonts (letters)',
+    items: [
+      { title: 'bb(R)', preview: 'ℝ', snippet: 'bb(R)' },
+      { title: 'bb(N)', preview: 'ℕ', snippet: 'bb(N)' },
+      { title: 'bb(Q)', preview: 'ℚ', snippet: 'bb(Q)' },
+      { title: 'rm(d)', preview: 'd', snippet: 'rm(d)' },
+      { title: 'sf(A)', preview: 'A', snippet: 'sf(A)' }
+    ]
+  },
+  {
+    title: 'Misc',
+    items: [
+      { title: 'ceil(•)', preview: '⌈•⌉', snippet: 'ceil(•)' },
+      { title: 'floor(•)', preview: '⌊•⌋', snippet: 'floor(•)' },
+      { title: 'Re', preview: 'ℜ', snippet: 'Re' },
+      { title: 'Im', preview: 'ℑ', snippet: 'Im' }
     ]
   }
 ];

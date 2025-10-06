@@ -1,3 +1,5 @@
+@import "../styles/mc-ui.scss";
+
 /* Remove any position settings from .math-symbols and .symbols-container */
 .math-symbols {
   /* No need for position: relative; */
@@ -12,7 +14,7 @@
 
 .palette-header { gap: 6px; }
 .search-bar { padding: 0; min-width: 200px; flex: 0 0 240px; max-width: 280px; }
-.search-bar .input-group { width: 100%; }
+.search-bar .mc-input-group { width: 100%; }
 
 .symbol-grid {
   display: flex;
@@ -40,25 +42,43 @@
   font-weight: bold;
 }
 
-/* Compact tabs for groups */
-.nav-tabs { /* reserved for overrides if needed */ }
-.nav.nav-tabs {
+/* Group tabs styled as Material-like basic chips */
+.mc-nav.mc-nav-tabs {
   margin-bottom: 6px;
   flex-wrap: wrap;
-  gap: 2px;
-  border-bottom: none; /* remove bottom line under tabs */
+  gap: 6px;
+  border-bottom: none; /* no underline for chip style */
 }
-.nav-tabs .nav-item { margin-bottom: 0; }
-.nav-tabs .nav-link {
-  padding: 2px 6px;
-  font-size: 1rem;
-  line-height: 1.2;
+.mc-nav-tabs .mc-nav-item { margin-bottom: 0; }
+.mc-nav-tabs .mc-nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 0.9rem;
+  line-height: 1.25;
+  border-radius: 9999px; /* pill */
+  border: 1px solid #e0e0e0;
+  background-color: #f1f3f5; /* neutral chip bg */
+  color: #495057;
+}
+.mc-nav-tabs .mc-nav-link:hover {
+  background-color: #e9ecef;
+  border-color: #d0d7de;
+}
+.mc-nav-tabs .mc-nav-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.35);
+}
+.mc-nav-tabs .mc-nav-link.active,
+.mc-nav-tabs .mc-nav-item.show .mc-nav-link {
+  background-color: #e7f1ff; /* subtle selected */
+  border-color: #b6d4fe;
+  color: #0d6efd;
 }
 
 /* Smaller search input */
-.search-bar .form-control {
+.search-bar .mc-form-control {
   padding: 2px 6px;
   height: auto;
   font-size: 0.9rem;
 }
-

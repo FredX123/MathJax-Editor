@@ -1,25 +1,25 @@
 <!-- Preview Area -->
-<div class="container mt-3">
+<div class="mc-container mc-mt-3">
   <!-- Preview -->
-  <div class="row">
-    <div class="col-12">
+  <div class="mc-row">
+    <div class="mc-col-12">
       <div class="preview">
-        <div #output id="output" [appMathJax]="renderedContent" class="p-3"></div>
+        <div #output id="output" [appMathJax]="renderedContent" class="mc-p-3"></div>
       </div>
     </div>
   </div>
   </div>
 
 <!-- Editor Area -->
-<div class="container editor-container">
+<div class="mc-container editor-container">
   <!-- Mode Selector -->
-  <div class="row mb-3">
-    <div class="col-12">
-      <div class="d-flex align-items-center gap-2">
-        <div class="btn-group" role="group" aria-label="Math input mode">
+  <div class="mc-row mc-mb-3">
+    <div class="mc-col-12">
+      <div class="mc-d-flex mc-align-items-center mc-gap-2">
+        <div class="mc-btn-group mc-toggle-group" role="group" aria-label="Math input mode">
           <button
             type="button"
-            class="btn btn-outline-secondary"
+            class="mc-toggle"
             *ngFor="let mode of modes"
             [class.active]="paletteMode === mode.key"
             [attr.aria-pressed]="paletteMode === mode.key"
@@ -28,29 +28,28 @@
             {{ mode.label }}
           </button>
         </div>
-        <button type="button" class="btn btn-link p-0 help-btn" (click)="openHelp()" aria-label="Help" title="Help">
+        <button type="button" class="mc-btn mc-btn-link mc-p-0 mc-help-btn" (click)="openHelp()" aria-label="Help" title="Help">
           &#9432;
         </button>
       </div>
     </div>
   </div>
   <!-- Math Symbol Tabs -->
-  <div class="row">
-    <div class="col-12">
+  <div class="mc-row">
+    <div class="mc-col-12">
       <app-math-symbols [mode]="paletteMode" (symbolInserted)="insertSymbol($event)"></app-math-symbols>
     </div>
   </div>
 
   <!-- Math Editor Form -->
-  <div class="row">
-    <div class="col-12">
+  <div class="mc-row">
+    <div class="mc-col-12">
       <form [formGroup]="mathForm">
-        <div class="mb-3">
+        <div class="mc-mb-3">
           <textarea
             #editor
             formControlName="editorContent"
-            class="form-control editor"
-            [disabled]="isDisabled"
+            class="mc-form-control editor"
             (blur)="handleBlur()"
             placeholder="Type your math expression here..."
           ></textarea>
@@ -64,11 +63,11 @@
 <div class="mjx-modal-backdrop" *ngIf="showHelp" (click)="closeHelp()"></div>
 <div class="mjx-modal" *ngIf="showHelp" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
   <div class="mjx-modal-header">
-    <h5 id="helpTitle" class="mjx-modal-title">Math Editor Help</h5>
+    <h3 id="helpTitle" class="mjx-modal-title">Math Editor Help</h3>
     <button type="button" class="btn-close" aria-label="Close" (click)="closeHelp()">✕</button>
   </div>
   <div class="mjx-modal-body">
-    <ol class="mb-3">
+    <ol class="mc-mb-3">
       <li>
         <strong>Pick a mode:</strong> Use TeX / MathML / AsciiMath buttons above the editor. Switching modes does not convert your text; it only changes how the preview is parsed.
       </li>
@@ -85,26 +84,24 @@
         <strong>Try a sample:</strong> Copy any sample input (TeX / MathML / AsciiMath) with the buttons below and paste into the textarea.
       </li>
     </ol>
-    <div class="mb-3">
+    <div class="mc-mb-3">
       <strong>Notes</strong>
       <ul class="mb-0">
-        <li>AsciiMath preview: plain text must be wrapped with <code>text("...")</code>; this editor does it in samples. Use the prefix <code>center:</code> at the start of a line to center that equation.</li>
         <li>Mode mismatch: If you paste TeX while in AsciiMath mode (or vice versa), the preview may be blank. Switch back to the matching mode or paste the matching sample.</li>
       </ul>
     </div>
 
     <div class="samples">
-      <h6 class="mb-2">Sample Preview (TeX)</h6>
-      <div class="p-2 border rounded mb-3" [appMathJax]="helpPreviewContent"></div>
-
-      <div class="d-flex gap-2 flex-wrap">
-        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('tex')" title="Copy TeX sample">Copy TeX</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('mathml')" title="Copy MathML sample">Copy MathML</button>
-        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="copySample('asciimath')" title="Copy AsciiMath sample">Copy AsciiMath</button>
+      <h4 class="mc-mb-2">Sample Preview (TeX)</h4>
+      <div class="mc-mb-2 mc-d-flex mc-gap-2 mc-flex-wrap">
+        <button type="button" class="mc-btn mc-btn-sm mc-btn-outline-secondary" (click)="copySample('tex')" title="Copy TeX sample">Copy TeX</button>
+        <button type="button" class="mc-btn mc-btn-sm mc-btn-outline-secondary" (click)="copySample('mathml')" title="Copy MathML sample">Copy MathML</button>
+        <button type="button" class="mc-btn mc-btn-sm mc-btn-outline-secondary" (click)="copySample('asciimath')" title="Copy AsciiMath sample">Copy AsciiMath</button>
       </div>
+      <div class="mc-p-2 mc-border mc-rounded mc-mb-3" [appMathJax]="helpPreviewContent"></div>
     </div>
   </div>
   <div class="mjx-modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="closeHelp()">Close</button>
+    <button type="button" class="mc-btn mc-btn-secondary" (click)="closeHelp()">Close</button>
   </div>
 </div>

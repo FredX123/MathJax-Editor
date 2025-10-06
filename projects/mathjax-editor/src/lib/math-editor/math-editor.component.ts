@@ -228,6 +228,14 @@ export class MathEditorComponent implements OnInit, ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.isDisabled = isDisabled;
+    const ctrl = this.editorContent as FormControl | null | undefined;
+    if (ctrl) {
+      if (isDisabled) {
+        ctrl.disable({ emitEvent: false });
+      } else {
+        ctrl.enable({ emitEvent: false });
+      }
+    }
   }
 
   handleBlur(): void {

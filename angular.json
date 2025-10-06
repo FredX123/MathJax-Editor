@@ -58,11 +58,9 @@
               { "glob": "**/*", "input": "node_modules/mathjax/input", "output": "input" }
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
               "projects/demo-host/src/styles.scss"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
               "node_modules/mathjax/tex-mml-chtml.js"
             ],
             "browser": "projects/demo-host/src/main.ts"

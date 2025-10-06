@@ -6,7 +6,7 @@ Supports TeX, MathML, and AsciiMath; includes a compact symbol palette with sear
 ## Install
 
 ```
-npm i @mathcode/mathjax-editor mathjax bootstrap
+npm i @mathcode/mathjax-editor mathjax
 ```
 
 Configure MathJax in your app (Angular CLI):

@@ -1,4 +1,12 @@
 /* Global styles for demo-host app */
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, Arial, sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;
+  font-size: 1rem;
+  color: rgba(33, 37, 41, 0.75);
+  line-height: 1.5
+}
 
+// Import MC UI utilities and components to replace Bootstrap usage
+@import "../../mathjax-editor/src/lib/styles/mc-ui.scss";
