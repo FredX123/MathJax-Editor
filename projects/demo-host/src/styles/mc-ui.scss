@@ -1,0 +1,58 @@
+// MC UI — demo-host subset
+// Keep only what demo-host templates use.
+
+// Colors
+$mc-color-bg: #fff;
+$mc-color-text: #212529;
+$mc-color-border: #dee2e6;
+
+// Spacing scale (subset)
+$mc-space-2: 0.5rem;
+$mc-space-3: 1rem;
+
+// Spacing utilities used in demo-host
+.mc-mb-2 { margin-bottom: $mc-space-2; }
+.mc-mb-3 { margin-bottom: $mc-space-3; }
+
+// Nav tabs
+.mc-nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  gap: 0.25rem;
+}
+.mc-nav-item { }
+.mc-nav-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: #0d6efd;
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+}
+.mc-nav-link:hover { color: #0a58ca; }
+
+.mc-nav-tabs { border-bottom: 1px solid $mc-color-border; }
+.mc-nav-tabs .mc-nav-link {
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.mc-nav-tabs .mc-nav-link.active {
+  color: $mc-color-text;
+  background-color: $mc-color-bg;
+  border-color: $mc-color-border $mc-color-border transparent;
+}
+.mc-nav-tabs .mc-nav-link { border: 1px solid transparent; }
+.mc-nav-tabs .mc-nav-link:hover { border-color: $mc-color-border $mc-color-border transparent; }
+
+// Tabs content
+.mc-tab-pane { display: none; }
+.mc-tab-pane.active { display: block; }
+.mc-fade { transition: opacity .15s linear; opacity: 0; }
+.mc-fade.show { opacity: 1; }
